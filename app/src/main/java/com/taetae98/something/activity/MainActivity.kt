@@ -15,6 +15,8 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     private fun onCreateBottomNavigationView() {
-        binding.bottomNavigationView.setupWithNavController(navController)
+        with(binding.bottomNavigationView) {
+            setupWithNavController(navController)
+        }
     }
 }

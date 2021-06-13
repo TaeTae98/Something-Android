@@ -4,4 +4,14 @@
     <string name="calendar">Calendar</string>
     <string name="more">More</string>
     <string name="drawer">Drawer</string>
+    <string name="post">Post</string>
+    <string name="mark_at_the_top">Mark at the top</string>
+    <string name="show_on_notification">Show on notification</string>
+    <string name="edit">Edit</string>
+    <string name="security">Security</string>
+    <string name="term">Term</string>
+    <string name="begin">Begin</string>
+    <string name="end">End</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
 </resources>
