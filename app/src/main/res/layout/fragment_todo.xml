@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:text="ToDo"
-        android:gravity="center"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="?attr/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:title="@string/todo"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:text="ToDo"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

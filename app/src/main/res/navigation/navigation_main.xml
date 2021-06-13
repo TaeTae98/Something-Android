@@ -8,22 +8,23 @@
     <fragment
         android:id="@+id/todoFragment"
         android:name="com.taetae98.something.fragment.ToDoFragment"
-        android:label="ToDoFragment"
-        tools:layout="@layout/fragment_todo"/>
+        android:label="@string/todo"
+        tools:layout="@layout/fragment_todo">
+    </fragment>
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.taetae98.something.fragment.CalendarFragment"
-        android:label="CalendarFragment"
-        tools:layout="@layout/fragment_calendar"/>
+        android:label="@string/calendar"
+        tools:layout="@layout/fragment_calendar">
+    </fragment>
     <fragment
         android:id="@+id/drawerFragment"
         android:name="com.taetae98.something.fragment.DrawerFragment"
-        android:label="DrawerFragment"
+        android:label="@string/drawer"
         tools:layout="@layout/fragment_drawer"/>
     <fragment
         android:id="@+id/mainMoreFragment"
         android:name="com.taetae98.something.fragment.MainMoreFragment"
-        android:label="MainMoreFragment"
+        android:label="@string/more"
         tools:layout="@layout/fragment_main_more"/>
-
 </navigation>
