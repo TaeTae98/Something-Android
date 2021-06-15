@@ -5,6 +5,7 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import com.taetae98.something.viewmodel.ToDoEditViewModel
 
 @Entity(
     foreignKeys = [
@@ -66,6 +67,23 @@ data class ToDo(
 
         override fun newArray(size: Int): Array<ToDo?> {
             return arrayOfNulls(size)
+        }
+    }
+
+    class Factory {
+        companion object {
+            fun createFromToDoEditViewModel(viewModel: ToDoEditViewModel): ToDo {
+                return ToDo(
+                    title = viewModel.title.value ?: "",
+                    description = viewModel.description.value ?: "",
+                    drawerId = viewModel.drawerId.value,
+                    isOnTop = viewModel.isOnTop.value ?: false,
+                    isNotification = viewModel.isNotification.value ?: false,
+                    isFinished = false,
+                    beginDate = if (viewModel.hasTerm.value == true) viewModel.beginDate.value else null,
+                    endDate = if (viewModel.hasTerm.value == true) viewModel.endDate.value else null
+                )
+            }
         }
     }
 }
