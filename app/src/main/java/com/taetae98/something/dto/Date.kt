@@ -9,11 +9,15 @@ data class Date(
     var year: Int = Calendar.getInstance().get(Calendar.YEAR),
     var month: Int = Calendar.getInstance().get(Calendar.MONTH),
     var dayOfMonth: Int = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-) : Parcelable {
+) : Parcelable, Comparable<Date> {
     val timeInMillis: Long
         get() {
             return GregorianCalendar(year, month, dayOfMonth).timeInMillis
         }
+
+    override fun compareTo(other: Date): Int {
+        return compareValues(timeInMillis, other.timeInMillis)
+    }
 
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
@@ -34,7 +38,7 @@ data class Date(
     }
 
     override fun toString(): String {
-        return SimpleDateFormat().format(timeInMillis)
+        return SimpleDateFormat.getDateInstance().format(timeInMillis)
     }
 
     class Factory {

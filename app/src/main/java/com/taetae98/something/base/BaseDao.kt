@@ -6,7 +6,11 @@ import androidx.room.*
 interface BaseDao<E: Any> {
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(vararg elements: E)
+    suspend fun insert(elements: E): Long
+
+    @Transaction
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(vararg elements: E): LongArray
 
     @Transaction
     @Delete

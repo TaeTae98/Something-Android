@@ -4,7 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View.OnClickListener" />
 
+        <variable
+            name="viewModel"
+            type="com.taetae98.something.viewmodel.ToDoEditViewModel" />
+
+        <variable
+            name="onSetBeginDate"
+            type="OnClickListener" />
+
+        <variable
+            name="onSetEndDate"
+            type="OnClickListener" />
+
+        <variable
+            name="onFinish"
+            type="OnClickListener" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -45,6 +61,7 @@
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/mark_at_the_top_switch"
                             android:text="@string/mark_at_the_top"
+                            android:checked="@={viewModel.isOnTop}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -56,6 +73,7 @@
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/show_on_notification_switch"
                             android:text="@string/show_on_notification"
+                            android:checked="@={viewModel.isNotification}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -82,6 +100,7 @@
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/term_switch"
                             android:text="@string/term"
+                            android:checked="@={viewModel.hasTerm}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -92,6 +111,9 @@
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/begin_title_text_view"
+                            android:clickable="@{viewModel.hasTerm}"
+                            android:onClick="@{onSetBeginDate}"
+                            android:alpha="@{viewModel.hasTerm ? 1.0F : 0.3F}"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -106,6 +128,9 @@
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/end_title_text_view"
+                            android:onClick="@{onSetEndDate}"
+                            android:clickable="@{viewModel.hasTerm}"
+                            android:alpha="@{viewModel.hasTerm ? 1.0F : 0.3F}"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -120,11 +145,15 @@
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/begin_text_view"
+                            android:onClick="@{onSetBeginDate}"
+                            android:clickable="@{viewModel.hasTerm}"
+                            android:alpha="@{viewModel.hasTerm ? 1.0F : 0.3F}"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:layout_marginBottom="10dp"
                             android:textAlignment="center"
+                            app:date="@{viewModel.beginDate}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/end_text_view"
                             app:layout_constraintStart_toStartOf="parent"
@@ -133,11 +162,15 @@
 
                         <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/end_text_view"
+                            android:onClick="@{onSetEndDate}"
+                            android:clickable="@{viewModel.hasTerm}"
+                            android:alpha="@{viewModel.hasTerm ? 1.0F : 0.3F}"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
                             android:layout_marginBottom="10dp"
                             android:textAlignment="center"
+                            app:date="@{viewModel.endDate}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/begin_text_view"
@@ -161,6 +194,7 @@
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/drawer_switch"
                             android:text="@string/drawer"
+                            android:checked="@={viewModel.hasDrawer}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -171,9 +205,9 @@
 
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+                            android:alpha="@{viewModel.hasDrawer ? 1.0F : 0.3F}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
                             android:hint="@string/drawer"
                             app:boxBackgroundColor="@android:color/transparent"
                             app:boxBackgroundMode="filled"
@@ -184,6 +218,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/drawer_switch">
                             <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                                android:enabled="@{viewModel.hasDrawer}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:cursorVisible="false"
@@ -210,8 +245,8 @@
                             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
                             android:hint="@string/title"
+                            app:errorEnabled="@{viewModel.title.empty}"
                             app:boxBackgroundColor="@android:color/transparent"
                             app:boxStrokeWidth="0dp"
                             app:boxStrokeWidthFocused="0dp"
@@ -219,6 +254,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
                             <com.google.android.material.textfield.TextInputEditText
+                                android:text="@={viewModel.title}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="text" />
@@ -228,7 +264,6 @@
                             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
                             android:hint="@string/description"
                             app:boxBackgroundColor="@android:color/transparent"
                             app:boxStrokeWidth="0dp"
@@ -238,6 +273,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/title_text_input_layout">
                             <com.google.android.material.textfield.TextInputEditText
+                                android:text="@={viewModel.description}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="textMultiLine" />
@@ -248,6 +284,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:onClick="@{onFinish}"
             android:src="@drawable/ic_finish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
