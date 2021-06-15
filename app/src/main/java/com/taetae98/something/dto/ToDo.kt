@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.taetae98.something.viewmodel.ToDoEditViewModel
 
@@ -15,6 +16,13 @@ import com.taetae98.something.viewmodel.ToDoEditViewModel
             childColumns = ["drawerId"],
             onDelete = ForeignKey.SET_NULL,
             onUpdate = ForeignKey.CASCADE
+        )
+    ],
+    indices = [
+        Index(
+            value = ["drawerId"],
+            name = "index_drawer_id",
+            unique = false
         )
     ]
 )
