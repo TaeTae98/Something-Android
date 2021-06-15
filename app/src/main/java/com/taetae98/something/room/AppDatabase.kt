@@ -9,7 +9,7 @@ import com.taetae98.something.DATABASE_NAME
 import com.taetae98.something.dto.Drawer
 import com.taetae98.something.dto.ToDo
 
-@Database(entities = [ToDo::class, Drawer::class], version = 1)
+@Database(entities = [ToDo::class, Drawer::class], version = 1, exportSchema = false)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     companion object {
