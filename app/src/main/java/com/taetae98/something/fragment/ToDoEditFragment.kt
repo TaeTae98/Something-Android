@@ -82,16 +82,20 @@ class ToDoEditFragment : BindingFragment<FragmentTodoEditBinding>(R.layout.fragm
 
     private fun onCreateOnFinish() {
         binding.setOnFinish {
-            if (viewModel.title.value!!.isBlank()) {
-                binding.titleTextInputLayout.error = getString(R.string.enter_the_title)
-                return@setOnFinish
-            }
-
-            CoroutineScope(Dispatchers.IO).launch {
-                todoRepository.insert(ToDo.Factory.createFromToDoEditViewModel(viewModel))
-            }
-
-            finish()
+            onFinish()
         }
+    }
+
+    private fun onFinish() {
+        if (viewModel.title.value!!.isBlank()) {
+            binding.titleTextInputLayout.error = getString(R.string.enter_the_title)
+            return
+        }
+
+        CoroutineScope(Dispatchers.IO).launch {
+            todoRepository.insert(ToDo.Factory.createFromToDoEditViewModel(viewModel))
+        }
+
+        finish()
     }
 }
