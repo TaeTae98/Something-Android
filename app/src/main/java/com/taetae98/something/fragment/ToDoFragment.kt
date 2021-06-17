@@ -1,6 +1,5 @@
 package com.taetae98.something.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,13 +9,10 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.taetae98.something.R
-import com.taetae98.something.activity.ToDoEditActivity
 import com.taetae98.something.adapter.ToDoAdapter
 import com.taetae98.something.base.BindingFragment
 import com.taetae98.something.databinding.FragmentTodoBinding
 import com.taetae98.something.repository.ToDoRepository
-import com.taetae98.something.toDp
-import com.taetae98.something.utility.GridSpacingItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -59,7 +55,6 @@ class ToDoFragment : BindingFragment<FragmentTodoBinding>(R.layout.fragment_todo
     private fun onCreateRecyclerView() {
         with(binding.recyclerView) {
             adapter = todoAdapter
-            addItemDecoration(GridSpacingItemDecoration(1, 10.toDp()))
         }
     }
 
@@ -111,7 +106,7 @@ class ToDoFragment : BindingFragment<FragmentTodoBinding>(R.layout.fragment_todo
 
     private fun onCreateOnToDoAdd() {
         binding.setOnToDoAdd {
-            startActivity(Intent(requireContext(), ToDoEditActivity::class.java))
+            findNavController().navigate(ToDoFragmentDirections.actionTodoFragmentToToDoEditActivity())
         }
     }
 }

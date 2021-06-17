@@ -12,7 +12,10 @@
         tools:layout="@layout/fragment_todo">
         <action
             android:id="@+id/action_todoFragment_to_toDoBottomMenuDialog"
-            app:destination="@id/toDoBottomMenuDialog" />
+            app:destination="@id/todoBottomMenuDialog" />
+        <action
+            android:id="@+id/action_todoFragment_to_toDoEditActivity"
+            app:destination="@id/todoEditActivity" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
@@ -24,19 +27,65 @@
         android:id="@+id/drawerFragment"
         android:name="com.taetae98.something.fragment.DrawerFragment"
         android:label="@string/drawer"
-        tools:layout="@layout/fragment_drawer"/>
+        tools:layout="@layout/fragment_drawer">
+        <action
+            android:id="@+id/action_drawerFragment_to_drawerEditActivity"
+            app:destination="@id/drawerEditActivity" />
+        <action
+            android:id="@+id/action_drawerFragment_to_drawerBottomMenuDialog"
+            app:destination="@id/drawerBottomMenuDialog" />
+    </fragment>
     <fragment
         android:id="@+id/mainMoreFragment"
         android:name="com.taetae98.something.fragment.MainMoreFragment"
         android:label="@string/more"
         tools:layout="@layout/fragment_main_more"/>
     <dialog
-        android:id="@+id/toDoBottomMenuDialog"
+        android:id="@+id/todoBottomMenuDialog"
         android:name="com.taetae98.something.dialog.ToDoBottomMenuDialog"
         android:label="@string/menu"
         tools:layout="@layout/dialog_todo_bottom_menu">
         <argument
             android:name="todo"
             app:argType="com.taetae98.something.dto.ToDo" />
+        <action
+            android:id="@+id/action_toDoBottomMenuDialog_to_toDoEditActivity"
+            app:destination="@id/todoEditActivity"
+            app:popUpTo="@id/todoFragment" />
+    </dialog>
+    <activity
+        android:id="@+id/todoEditActivity"
+        android:name="com.taetae98.something.activity.ToDoEditActivity"
+        android:label="@string/edit"
+        tools:layout="@layout/activity_to_do_edit">
+        <argument
+            android:name="todo"
+            app:argType="com.taetae98.something.dto.ToDo"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </activity>
+    <activity
+        android:id="@+id/drawerEditActivity"
+        android:name="com.taetae98.something.activity.DrawerEditActivity"
+        android:label="@string/edit"
+        tools:layout="@layout/activity_drawer_edit">
+        <argument
+            android:name="drawer"
+            app:argType="com.taetae98.something.dto.Drawer"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </activity>
+    <dialog
+        android:id="@+id/drawerBottomMenuDialog"
+        android:name="com.taetae98.something.dialog.DrawerBottomMenuDialog"
+        android:label="@string/menu"
+        tools:layout="@layout/dialog_drawer_bottom_menu">
+        <action
+            android:id="@+id/action_drawerBottomMenuDialog_to_drawerEditActivity"
+            app:destination="@id/drawerEditActivity"
+            app:popUpTo="@id/drawerFragment" />
+        <argument
+            android:name="drawer"
+            app:argType="com.taetae98.something.dto.Drawer" />
     </dialog>
 </navigation>

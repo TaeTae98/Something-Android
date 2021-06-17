@@ -39,7 +39,7 @@ data class ToDo(
         parcel.readLong(),
         parcel.readString() ?: "",
         parcel.readString() ?: "",
-        parcel.readValue(Long::class.java.classLoader) as? Long,
+        parcel.readLong().let { if (it == 0L) null else it },
         parcel.readByte() != 0.toByte(),
         parcel.readByte() != 0.toByte(),
         parcel.readByte() != 0.toByte(),

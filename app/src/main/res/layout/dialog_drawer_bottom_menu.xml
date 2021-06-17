@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onEdit"
+            type="OnClickListener" />
+
+        <variable
+            name="onDelete"
+            type="OnClickListener" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/Theme.Something.Menu"
+            android:onClick="@{onEdit}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="@string/edit" />
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/Theme.Something.Menu"
+            android:onClick="@{onDelete}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="@string/delete" />
+    </LinearLayout>
+</layout>

@@ -2,20 +2,19 @@ package com.taetae98.something.activity
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.navigation.navArgs
 import com.taetae98.something.R
 import com.taetae98.something.base.BindingActivity
 import com.taetae98.something.databinding.ActivityDrawerEditBinding
-import com.taetae98.something.dto.Drawer
 import com.taetae98.something.viewmodel.DrawerEditViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DrawerEditActivity : BindingActivity<ActivityDrawerEditBinding>(R.layout.activity_drawer_edit) {
-    private val drawerEditViewModel by viewModels<DrawerEditViewModel>()
+    private val args by navArgs<DrawerEditActivityArgs>()
 
-    companion object {
-        const val DRAWER = "drawer"
-    }
+    private val drawer by lazy { args.drawer }
+    private val drawerEditViewModel by viewModels<DrawerEditViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,8 +22,6 @@ class DrawerEditActivity : BindingActivity<ActivityDrawerEditBinding>(R.layout.a
     }
 
     private fun onCreateDrawerEditViewModel() {
-        intent.getParcelableExtra<Drawer>(DRAWER)?.let {
-            drawerEditViewModel.update(it)
-        }
+        drawer?.let { drawerEditViewModel.update(it) }
     }
 }

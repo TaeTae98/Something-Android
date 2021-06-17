@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 import com.taetae98.something.viewmodel.DrawerEditViewModel
 
 @Entity
-class Drawer(
+data class Drawer(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0L,
     var name: String = "",

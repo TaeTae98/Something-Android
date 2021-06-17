@@ -1,5 +1,6 @@
 package com.taetae98.something.repository
 
+import androidx.lifecycle.LiveData
 import com.taetae98.something.dto.Drawer
 import com.taetae98.something.room.DrawerDao
 import javax.inject.Inject
@@ -11,5 +12,13 @@ class DrawerRepository @Inject constructor(
 ) {
     suspend fun insert(drawer: Drawer): Long {
         return drawerDao.insert(drawer)
+    }
+
+    suspend fun delete(drawer: Drawer) {
+        drawerDao.delete(drawer)
+    }
+
+    fun findAllLiveData(): LiveData<List<Drawer>> {
+        return drawerDao.findAllLiveDate()
     }
 }
