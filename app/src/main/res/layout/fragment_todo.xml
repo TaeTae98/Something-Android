@@ -27,7 +27,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:title="@string/todo"/>
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.taetae98.something.view.ToDoRecyclerView
                 android:id="@+id/recycler_view"
                 android:padding="5dp"
                 android:clipToPadding="false"

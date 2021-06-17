@@ -21,7 +21,7 @@ class DrawerFragment : BindingFragment<FragmentDrawerBinding>(R.layout.fragment_
     private val drawerAdapter by lazy {
         DrawerAdapter().apply {
             onDrawerClickCallback = {
-
+                findNavController().navigate(DrawerFragmentDirections.actionDrawerFragmentToDrawerToDoFragment(it))
             }
 
             onDrawerLongClickCallback = {

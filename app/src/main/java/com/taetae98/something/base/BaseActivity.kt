@@ -13,7 +13,7 @@ abstract class BaseActivity : AppCompatActivity() {
         (supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment).navController
     }
 
-    protected open val appBarConfiguration by lazy { AppBarConfiguration(setOf()) }
+    protected abstract val appBarConfiguration: AppBarConfiguration
 
     override fun setSupportActionBar(toolbar: Toolbar?) {
         super.setSupportActionBar(toolbar)

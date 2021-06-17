@@ -21,4 +21,8 @@ class DrawerRepository @Inject constructor(
     fun findAllLiveData(): LiveData<List<Drawer>> {
         return drawerDao.findAllLiveDate()
     }
+
+    suspend fun findAll(): List<Drawer> {
+        return drawerDao.findAll()
+    }
 }

@@ -80,7 +80,7 @@ data class ToDo(
                     id = viewModel.id.value ?: 0L,
                     title = viewModel.title.value ?: "",
                     description = viewModel.description.value ?: "",
-                    drawerId = viewModel.drawerId.value,
+                    drawerId = if (viewModel.hasDrawer.value == true) viewModel.drawerId.value else null,
                     isOnTop = viewModel.isOnTop.value ?: false,
                     isNotification = viewModel.isNotification.value ?: false,
                     isFinished = false,

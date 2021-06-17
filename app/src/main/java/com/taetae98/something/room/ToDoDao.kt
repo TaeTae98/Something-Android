@@ -14,4 +14,7 @@ interface ToDoDao : BaseDao<ToDo> {
 
     @Query("SELECT * FROM ToDo $ORDER")
     fun findAllLiveData(): LiveData<List<ToDo>>
+
+    @Query("SELECT * FROM ToDo WHERE drawerId=:drawerId")
+    fun findByDrawerIdLiveData(drawerId: Long): LiveData<List<ToDo>>
 }

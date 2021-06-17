@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_drawerFragment_to_drawerBottomMenuDialog"
             app:destination="@id/drawerBottomMenuDialog" />
+        <action
+            android:id="@+id/action_drawerFragment_to_drawerToDoFragment"
+            app:destination="@id/drawerToDoFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainMoreFragment"
@@ -51,7 +54,8 @@
         <action
             android:id="@+id/action_toDoBottomMenuDialog_to_toDoEditActivity"
             app:destination="@id/todoEditActivity"
-            app:popUpTo="@id/todoFragment" />
+            app:popUpTo="@id/todoBottomMenuDialog"
+            app:popUpToInclusive="true" />
     </dialog>
     <activity
         android:id="@+id/todoEditActivity"
@@ -88,4 +92,15 @@
             android:name="drawer"
             app:argType="com.taetae98.something.dto.Drawer" />
     </dialog>
+    <fragment
+        android:id="@+id/drawerToDoFragment"
+        android:name="com.taetae98.something.fragment.DrawerToDoFragment"
+        tools:layout="@layout/fragment_drawer_todo">
+        <argument
+            android:name="drawer"
+            app:argType="com.taetae98.something.dto.Drawer" />
+        <action
+            android:id="@+id/action_drawerToDoFragment_to_todoBottomMenuDialog"
+            app:destination="@id/todoBottomMenuDialog" />
+    </fragment>
 </navigation>

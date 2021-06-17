@@ -3,6 +3,7 @@ package com.taetae98.something.activity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.navigation.navArgs
+import androidx.navigation.ui.AppBarConfiguration
 import com.taetae98.something.R
 import com.taetae98.something.base.BindingActivity
 import com.taetae98.something.databinding.ActivityToDoEditBinding
@@ -11,6 +12,12 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ToDoEditActivity : BindingActivity<ActivityToDoEditBinding>(R.layout.activity_to_do_edit) {
+    override val appBarConfiguration by lazy {
+        AppBarConfiguration(
+            setOf(R.id.toDoEditFragment)
+        )
+    }
+
     private val args by navArgs<ToDoEditActivityArgs>()
 
     private val todo by lazy { args.todo }
