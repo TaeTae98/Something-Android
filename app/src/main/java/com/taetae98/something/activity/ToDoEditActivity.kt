@@ -23,7 +23,6 @@ class ToDoEditActivity : BindingActivity<ActivityToDoEditBinding>(R.layout.activ
     private val todo by lazy { args.todo }
     private val todoEditViewModel by viewModels<ToDoEditViewModel>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         onCreateToDoEditViewModel()

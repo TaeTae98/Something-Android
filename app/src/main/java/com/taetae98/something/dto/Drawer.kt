@@ -2,6 +2,7 @@ package com.taetae98.something.dto
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.taetae98.something.viewmodel.DrawerEditViewModel
@@ -9,15 +10,14 @@ import com.taetae98.something.viewmodel.DrawerEditViewModel
 @Entity
 data class Drawer(
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "drawerId")
     var id: Long = 0L,
     var name: String = "",
-    var hasPassword: Boolean = false,
     var password: String? = null,
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readLong(),
         parcel.readString() ?: "",
-        parcel.readByte() != 0.toByte(),
         parcel.readString() ?: ""
     )
 
@@ -29,7 +29,6 @@ data class Drawer(
         with(dest) {
             writeLong(id)
             writeString(name)
-            writeByte(if (hasPassword) 1 else 0)
             writeString(password)
         }
     }
@@ -50,8 +49,7 @@ data class Drawer(
                 return Drawer(
                     viewModel.id.value ?: 0L,
                     viewModel.name.value ?: "",
-                    viewModel.hasPassword.value ?: false,
-                    viewModel.password.value ?: ""
+                    if (viewModel.hasPassword.value == true) viewModel.password.value else null
                 )
             }
         }

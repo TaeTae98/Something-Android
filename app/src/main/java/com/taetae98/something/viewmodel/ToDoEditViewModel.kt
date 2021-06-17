@@ -12,17 +12,18 @@ class ToDoEditViewModel @Inject constructor(
     stateHandle: SavedStateHandle,
 ): ViewModel() {
     companion object {
-        private const val ID = "id"
-        private const val TITLE = "title"
-        private const val DESCRIPTION = "description"
-        private const val DRAWER_ID = "drawerID"
-        private const val IS_ON_TOP = "isOnTop"
-        private const val IS_NOTIFICATION = "isNotification"
-        private const val BEGIN_DATE = "beginDate"
-        private const val END_DATE = "endDate"
+        private const val ID = "ID"
+        private const val TITLE = "TITLE"
+        private const val DESCRIPTION = "DESCRIPTION"
+        private const val DRAWER_ID = "DRAWER_ID"
+        private const val IS_ON_TOP = "IS_ON_TOP"
+        private const val IS_NOTIFICATION = "IS_NOTIFICATION"
+        private const val IS_FINISHED = "IS_FINISHED"
+        private const val BEGIN_DATE = "BEGIN_DATE"
+        private const val END_DATE = "END_DATE"
 
-        private const val HAS_TERM = "hasTerm"
-        private const val HAS_DRAWER = "hasDrawer"
+        private const val HAS_TERM = "HAS_TERM"
+        private const val HAS_DRAWER = "HAS_DRAWER"
     }
 
     val id = stateHandle.getLiveData(ID, 0L)
@@ -31,6 +32,7 @@ class ToDoEditViewModel @Inject constructor(
     val drawerId = stateHandle.getLiveData<Long>(DRAWER_ID, null)
     val isOnTop = stateHandle.getLiveData(IS_ON_TOP, false)
     val isNotification = stateHandle.getLiveData(IS_NOTIFICATION, false)
+    val isFinished = stateHandle.getLiveData(IS_FINISHED, false)
     val beginDate = stateHandle.getLiveData<Date>(BEGIN_DATE, null)
     val endDate = stateHandle.getLiveData<Date>(END_DATE, null)
 
@@ -66,6 +68,7 @@ class ToDoEditViewModel @Inject constructor(
         drawerId.value = todo.drawerId
         isOnTop.value = todo.isOnTop
         isNotification.value = todo.isNotification
+        isFinished.value = todo.isFinished
         beginDate.value = todo.term?.beginDate
         endDate.value = todo.term?.endDate
     }

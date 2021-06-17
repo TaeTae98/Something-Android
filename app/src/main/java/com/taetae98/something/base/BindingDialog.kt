@@ -8,10 +8,10 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import com.taetae98.something.utility.DataBinding
 
-abstract class BindingBottomSheetDialog<VB: ViewDataBinding>(
+abstract class BindingDialog<VB: ViewDataBinding>(
     @LayoutRes
     protected val layoutId: Int
-) : BaseBottomSheetDialog(), DataBinding<VB> {
+) : BaseDialog(), DataBinding<VB> {
     override val binding: VB by lazy { DataBinding.get(this, layoutId) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

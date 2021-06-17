@@ -9,12 +9,15 @@ import com.taetae98.something.dto.ToDo
 @Dao
 interface ToDoDao : BaseDao<ToDo> {
     companion object {
-        private const val ORDER = "ORDER BY isOnTop DESC, beginDate, endDate"
+        private const val ORDER = "ORDER BY isFinished, isOnTop DESC, beginDate, endDate"
     }
 
     @Query("SELECT * FROM ToDo $ORDER")
     fun findAllLiveData(): LiveData<List<ToDo>>
 
-    @Query("SELECT * FROM ToDo WHERE drawerId=:drawerId")
+    @Query("SELECT * FROM ToDo WHERE drawerId=:drawerId $ORDER")
     fun findByDrawerIdLiveData(drawerId: Long): LiveData<List<ToDo>>
+
+    @Query("SELECT * FROM ToDo LEFT OUTER JOIN Drawer ON ToDo.drawerId = Drawer.drawerId WHERE password IS NULL AND isFinished = 0 $ORDER")
+    fun findHasNotPasswordAndNotFinishedLiveData(): LiveData<List<ToDo>>
 }

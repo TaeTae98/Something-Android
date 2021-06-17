@@ -111,7 +111,7 @@
                             android:layout_marginBottom="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:errorEnabled="@{viewModel.name.empty}"
+                            app:errorEnabled="@{viewModel.name.empty ? false : false }"
                             app:boxBackgroundColor="@android:color/transparent"
                             app:boxStrokeWidth="0dp"
                             app:boxStrokeWidthFocused="0dp">

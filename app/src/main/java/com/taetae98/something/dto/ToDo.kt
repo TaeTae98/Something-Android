@@ -9,7 +9,7 @@ import com.taetae98.something.viewmodel.ToDoEditViewModel
     foreignKeys = [
         ForeignKey(
             entity = Drawer::class,
-            parentColumns = ["id"],
+            parentColumns = ["drawerId"],
             childColumns = ["drawerId"],
             onDelete = ForeignKey.SET_NULL,
             onUpdate = ForeignKey.CASCADE
@@ -25,6 +25,7 @@ import com.taetae98.something.viewmodel.ToDoEditViewModel
 )
 data class ToDo(
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "todoId")
     var id: Long = 0L,
     var title: String = "",
     var description: String = "",
@@ -83,7 +84,7 @@ data class ToDo(
                     drawerId = if (viewModel.hasDrawer.value == true) viewModel.drawerId.value else null,
                     isOnTop = viewModel.isOnTop.value ?: false,
                     isNotification = viewModel.isNotification.value ?: false,
-                    isFinished = false,
+                    isFinished = viewModel.isFinished.value ?: false,
                     term = if (viewModel.hasTerm.value == true) Term(viewModel.beginDate.value, viewModel.endDate.value) else null
                 )
             }
