@@ -11,6 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Something">
         <activity
+            android:name=".activity.DrawerEditActivity"
+            android:windowSoftInputMode="adjustResize">
+
+        </activity>
+        <activity
             android:name=".activity.ToDoEditActivity"
             android:windowSoftInputMode="adjustResize">
 

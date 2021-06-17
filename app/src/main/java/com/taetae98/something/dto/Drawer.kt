@@ -4,14 +4,15 @@ import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.taetae98.something.viewmodel.DrawerEditViewModel
 
 @Entity
 class Drawer(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0L,
     var name: String = "",
-    var isSecure: Boolean = false,
-    var password: String = "",
+    var hasPassword: Boolean = false,
+    var password: String? = null,
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readLong(),
@@ -28,7 +29,7 @@ class Drawer(
         with(dest) {
             writeLong(id)
             writeString(name)
-            writeByte(if (isSecure) 1 else 0)
+            writeByte(if (hasPassword) 1 else 0)
             writeString(password)
         }
     }
@@ -40,6 +41,19 @@ class Drawer(
 
         override fun newArray(size: Int): Array<Drawer?> {
             return arrayOfNulls(size)
+        }
+    }
+
+    class Factory {
+        companion object {
+            fun createFromDrawerEditViewModel(viewModel: DrawerEditViewModel): Drawer {
+                return Drawer(
+                    viewModel.id.value ?: 0L,
+                    viewModel.name.value ?: "",
+                    viewModel.hasPassword.value ?: false,
+                    viewModel.password.value ?: ""
+                )
+            }
         }
     }
 }
