@@ -4,4 +4,8 @@
         <item name="android:background">?colorPrimary</item>
         <item name="titleTextColor">?colorControlNormal</item>
     </style>
+
+    <style name="Theme.Something.Menu" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">?attr/titleColor</item>
+    </style>
 </resources>

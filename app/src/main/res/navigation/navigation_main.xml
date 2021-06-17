@@ -10,6 +10,9 @@
         android:name="com.taetae98.something.fragment.ToDoFragment"
         android:label="@string/todo"
         tools:layout="@layout/fragment_todo">
+        <action
+            android:id="@+id/action_todoFragment_to_toDoBottomMenuDialog"
+            app:destination="@id/toDoBottomMenuDialog" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
@@ -27,4 +30,13 @@
         android:name="com.taetae98.something.fragment.MainMoreFragment"
         android:label="@string/more"
         tools:layout="@layout/fragment_main_more"/>
+    <dialog
+        android:id="@+id/toDoBottomMenuDialog"
+        android:name="com.taetae98.something.dialog.ToDoBottomMenuDialog"
+        android:label="@string/menu"
+        tools:layout="@layout/dialog_todo_bottom_menu">
+        <argument
+            android:name="todo"
+            app:argType="com.taetae98.something.dto.ToDo" />
+    </dialog>
 </navigation>

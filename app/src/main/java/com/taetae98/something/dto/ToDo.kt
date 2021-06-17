@@ -2,10 +2,7 @@ package com.taetae98.something.dto
 
 import android.os.Parcel
 import android.os.Parcelable
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.Index
-import androidx.room.PrimaryKey
+import androidx.room.*
 import com.taetae98.something.viewmodel.ToDoEditViewModel
 
 @Entity(
@@ -35,8 +32,8 @@ data class ToDo(
     var isOnTop: Boolean = false,
     var isNotification: Boolean = false,
     var isFinished: Boolean = false,
-    var beginDate: Date? = null,
-    var endDate: Date? = null
+    @Embedded
+    var term: Term? = null
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readLong(),
@@ -46,8 +43,7 @@ data class ToDo(
         parcel.readByte() != 0.toByte(),
         parcel.readByte() != 0.toByte(),
         parcel.readByte() != 0.toByte(),
-        parcel.readParcelable(Date::class.java.classLoader),
-        parcel.readParcelable(Date::class.java.classLoader)
+        parcel.readParcelable(Term::class.java.classLoader),
     )
 
     override fun describeContents(): Int {
@@ -63,8 +59,7 @@ data class ToDo(
             writeByte(if (isFinished) 1 else 0)
             writeByte(if (isOnTop) 1 else 0)
             writeByte(if (isNotification) 1 else 0)
-            writeParcelable(beginDate, flags)
-            writeParcelable(endDate, flags)
+            writeParcelable(term, flags)
         }
     }
 
@@ -82,14 +77,14 @@ data class ToDo(
         companion object {
             fun createFromToDoEditViewModel(viewModel: ToDoEditViewModel): ToDo {
                 return ToDo(
+                    id = viewModel.id.value ?: 0L,
                     title = viewModel.title.value ?: "",
                     description = viewModel.description.value ?: "",
                     drawerId = viewModel.drawerId.value,
                     isOnTop = viewModel.isOnTop.value ?: false,
                     isNotification = viewModel.isNotification.value ?: false,
                     isFinished = false,
-                    beginDate = if (viewModel.hasTerm.value == true) viewModel.beginDate.value else null,
-                    endDate = if (viewModel.hasTerm.value == true) viewModel.endDate.value else null
+                    term = if (viewModel.hasTerm.value == true) Term(viewModel.beginDate.value, viewModel.endDate.value) else null
                 )
             }
         }

@@ -1,5 +1,6 @@
 package com.taetae98.something.repository
 
+import androidx.lifecycle.LiveData
 import com.taetae98.something.dto.ToDo
 import com.taetae98.something.room.ToDoDao
 import javax.inject.Inject
@@ -11,5 +12,17 @@ class ToDoRepository @Inject constructor(
 ) {
     suspend fun insert(todo: ToDo): Long {
         return todoDao.insert(todo)
+    }
+
+    fun findAllLiveDate(): LiveData<List<ToDo>> {
+        return todoDao.findAllLiveData()
+    }
+
+    suspend fun delete(todo: ToDo) {
+        todoDao.delete(todo)
+    }
+
+    suspend fun update(todo: ToDo) {
+        todoDao.update(todo)
     }
 }
