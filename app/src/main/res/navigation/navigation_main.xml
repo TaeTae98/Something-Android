@@ -106,5 +106,8 @@
         <action
             android:id="@+id/action_drawerToDoFragment_to_todoEditActivity"
             app:destination="@id/todoEditActivity" />
+        <action
+            android:id="@+id/action_drawerToDoFragment_to_drawerEditActivity"
+            app:destination="@id/drawerEditActivity" />
     </fragment>
 </navigation>

@@ -1,9 +1,7 @@
 package com.taetae98.something.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.taetae98.something.R
@@ -32,6 +30,10 @@ class DrawerToDoFragment : BindingFragment<FragmentDrawerTodoBinding>(R.layout.f
                 findNavController().navigate(DrawerToDoFragmentDirections.actionDrawerToDoFragmentToTodoBottomMenuDialog(it))
             }
         }
+    }
+
+    init {
+        setHasOptionsMenu(true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -73,5 +75,20 @@ class DrawerToDoFragment : BindingFragment<FragmentDrawerTodoBinding>(R.layout.f
         todoRepository.findByDrawerIdLiveData(drawer.id).observe(viewLifecycleOwner) {
             todoAdapter.submitList(it)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_drawer_todo_fragment, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.edit -> {
+                findNavController().navigate(DrawerToDoFragmentDirections.actionDrawerToDoFragmentToDrawerEditActivity(drawer))
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

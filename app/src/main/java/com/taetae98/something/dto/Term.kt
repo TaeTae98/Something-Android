@@ -2,9 +2,12 @@ package com.taetae98.something.dto
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.ColumnInfo
 
 data class Term(
+    @ColumnInfo(defaultValue = "null")
     var beginDate: Date? = null,
+    @ColumnInfo(defaultValue = "null")
     var endDate: Date? = null
 ) : Parcelable {
     override fun toString(): String {

@@ -18,6 +18,14 @@ class DrawerRepository @Inject constructor(
         drawerDao.delete(drawer)
     }
 
+    suspend fun update(drawer: Drawer) {
+        drawerDao.update(drawer)
+    }
+
+    suspend fun update(list: List<Drawer>) {
+        list.forEach { update(it) }
+    }
+
     fun findAllLiveData(): LiveData<List<Drawer>> {
         return drawerDao.findAllLiveDate()
     }

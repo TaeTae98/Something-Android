@@ -26,4 +26,6 @@
     <string name="invalid_password">Invalid Password</string>
     <string name="set_progress">Set Progress</string>
     <string name="set_complete">Set Complete</string>
+    <string name="visible_in_todo">Visible In ToDo</string>
+    <string name="visible_in_calendar">Visible In Calendar</string>
 </resources>

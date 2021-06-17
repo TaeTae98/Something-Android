@@ -9,6 +9,7 @@ import com.taetae98.something.R
 import com.taetae98.something.adapter.ToDoAdapter
 import com.taetae98.something.base.BindingFragment
 import com.taetae98.something.databinding.FragmentTodoBinding
+import com.taetae98.something.repository.DrawerRepository
 import com.taetae98.something.repository.ToDoRepository
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -17,6 +18,13 @@ import javax.inject.Inject
 class ToDoFragment : BindingFragment<FragmentTodoBinding>(R.layout.fragment_todo) {
     @Inject
     lateinit var todoRepository: ToDoRepository
+
+    @Inject
+    lateinit var drawerRepository: DrawerRepository
+
+    init {
+        setHasOptionsMenu(true)
+    }
 
     private val todoAdapter by lazy {
         ToDoAdapter().apply {
