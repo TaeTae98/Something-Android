@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/option_card_view"
+                        android:id="@+id/visible_card_view"
                         android:layout_margin="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -57,6 +57,44 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/is_visible_in_todo_fragment"
+                                android:text="@string/visible_in_todo"
+                                android:checked="@={viewModel.isVisibleInToDoFragment}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                            <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:id="@+id/is_visible_in_calendar_fragment"
+                                android:text="@string/visible_in_calendar"
+                                android:checked="@={viewModel.isVisibleInCalendarFragment}"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="10dp"
+                                app:layout_constraintTop_toBottomOf="@id/is_visible_in_todo_fragment"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/option_card_view"
+                        android:layout_margin="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/visible_card_view"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
                             <com.google.android.material.switchmaterial.SwitchMaterial
                                 android:id="@+id/drawer_switch"

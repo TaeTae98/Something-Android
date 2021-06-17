@@ -9,14 +9,10 @@ interface BaseDao<E: Any> {
     suspend fun insert(elements: E): Long
 
     @Transaction
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(vararg elements: E): LongArray
-
-    @Transaction
     @Delete
-    suspend fun delete(vararg elements: E)
+    suspend fun delete(elements: E)
 
     @Transaction
     @Update
-    suspend fun update(vararg elements: E)
+    suspend fun update(elements: E)
 }

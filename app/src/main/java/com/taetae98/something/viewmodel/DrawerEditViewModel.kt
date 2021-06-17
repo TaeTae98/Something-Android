@@ -13,19 +13,28 @@ class DrawerEditViewModel @Inject constructor(
     companion object {
         private const val ID = "ID"
         private const val NAME = "NAME"
-        private const val HAS_PASSWORD = "HAS_PASSWORD"
         private const val PASSWORD = "PASSWORD"
+        private const val IS_VISIBLE_IN_TODO_FRAGMENT = "IS_VISIBLE_IN_TODO_FRAGMENT"
+        private const val IS_VISIBLE_IN_CALENDAR_FRAGMENT = "IS_VISIBLE_IN_CALENDAR_FRAGMENT"
+
+        private const val HAS_PASSWORD = "HAS_PASSWORD"
     }
 
     val id = stateHandle.getLiveData(ID, 0L)
     val name = stateHandle.getLiveData(NAME, "")
-    val hasPassword = stateHandle.getLiveData(HAS_PASSWORD, false)
     val password = stateHandle.getLiveData<String>(PASSWORD, null)
+    val isVisibleInToDoFragment = stateHandle.getLiveData(IS_VISIBLE_IN_TODO_FRAGMENT, true)
+    val isVisibleInCalendarFragment = stateHandle.getLiveData(IS_VISIBLE_IN_CALENDAR_FRAGMENT, true)
+
+    val hasPassword = stateHandle.getLiveData(HAS_PASSWORD, false)
 
     fun update(drawer: Drawer) {
         id.value = drawer.id
         name.value = drawer.name
-        hasPassword.value = drawer.password != null
         password.value = drawer.password
+        isVisibleInToDoFragment.value = drawer.isVisibleInToDoFragment
+        isVisibleInCalendarFragment.value = drawer.isVisibleInCalendarFragment
+
+        hasPassword.value = drawer.password != null
     }
 }
