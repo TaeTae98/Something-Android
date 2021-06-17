@@ -213,6 +213,7 @@
                                 app:layout_constraintEnd_toEndOf="parent" />
 
                             <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/drawer_text_input_layout"
                                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
                                 android:alpha="@{viewModel.hasDrawer ? 1.0F : 0.3F}"
                                 android:layout_width="match_parent"

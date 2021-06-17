@@ -10,4 +10,7 @@ import com.taetae98.something.dto.Drawer
 interface DrawerDao : BaseDao<Drawer> {
     @Query("SELECT * FROM Drawer")
     fun findAllLiveDate(): LiveData<List<Drawer>>
+
+    @Query("SELECT * FROM Drawer")
+    suspend fun findAll(): List<Drawer>
 }

@@ -14,15 +14,19 @@ class ToDoRepository @Inject constructor(
         return todoDao.insert(todo)
     }
 
-    fun findAllLiveDate(): LiveData<List<ToDo>> {
-        return todoDao.findAllLiveData()
-    }
-
     suspend fun delete(todo: ToDo) {
         todoDao.delete(todo)
     }
 
     suspend fun update(todo: ToDo) {
         todoDao.update(todo)
+    }
+
+    fun findAllLiveDate(): LiveData<List<ToDo>> {
+        return todoDao.findAllLiveData()
+    }
+
+    fun findByDrawerIdLiveData(drawerId: Long): LiveData<List<ToDo>> {
+        return todoDao.findByDrawerIdLiveData(drawerId)
     }
 }
