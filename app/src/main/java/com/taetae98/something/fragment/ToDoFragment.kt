@@ -21,6 +21,9 @@ class ToDoFragment : BindingFragment<FragmentTodoBinding>(R.layout.fragment_todo
     private val todoAdapter by lazy {
         ToDoAdapter().apply {
             onToDoClickCallback = {
+                findNavController().navigate(ToDoFragmentDirections.actionTodoFragmentToToDoEditActivity(it))
+            }
+            onToDoLongClickCallback = {
                 findNavController().navigate(ToDoFragmentDirections.actionTodoFragmentToToDoBottomMenuDialog(it))
             }
         }
@@ -51,7 +54,7 @@ class ToDoFragment : BindingFragment<FragmentTodoBinding>(R.layout.fragment_todo
     }
 
     private fun onCreateToDoList() {
-        todoRepository.findAllLiveDate().observe(viewLifecycleOwner) {
+        todoRepository.findHasNotPasswordAndNotFinishedLiveData().observe(viewLifecycleOwner) {
             todoAdapter.submitList(it)
         }
     }

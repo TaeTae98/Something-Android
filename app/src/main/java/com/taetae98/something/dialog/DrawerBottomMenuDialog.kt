@@ -24,7 +24,7 @@ class DrawerBottomMenuDialog : BindingBottomSheetDialog<DialogDrawerBottomMenuBi
     private val args by navArgs<DrawerBottomMenuDialogArgs>()
     private val drawer by lazy { args.drawer }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
         onCreateOnEdit()
         onCreateOnDelete()

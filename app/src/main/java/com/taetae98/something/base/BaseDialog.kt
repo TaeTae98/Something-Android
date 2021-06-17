@@ -2,9 +2,9 @@ package com.taetae98.something.base
 
 import android.graphics.drawable.ColorDrawable
 import android.view.ViewGroup
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import androidx.fragment.app.DialogFragment
 
-abstract class BaseBottomSheetDialog : BottomSheetDialogFragment() {
+abstract class BaseDialog : DialogFragment() {
     protected fun setLayout(width: Int = ViewGroup.LayoutParams.WRAP_CONTENT, height: Int = ViewGroup.LayoutParams.WRAP_CONTENT) {
         dialog?.window?.setLayout(width, height)
     }

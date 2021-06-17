@@ -10,6 +10,7 @@ import com.taetae98.something.R
 import com.taetae98.something.adapter.ToDoAdapter
 import com.taetae98.something.base.BindingFragment
 import com.taetae98.something.databinding.FragmentDrawerTodoBinding
+import com.taetae98.something.dto.ToDo
 import com.taetae98.something.repository.ToDoRepository
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -25,6 +26,9 @@ class DrawerToDoFragment : BindingFragment<FragmentDrawerTodoBinding>(R.layout.f
     private val todoAdapter by lazy {
         ToDoAdapter().apply {
             onToDoClickCallback = {
+                findNavController().navigate(DrawerToDoFragmentDirections.actionDrawerToDoFragmentToTodoEditActivity(it))
+            }
+            onToDoLongClickCallback = {
                 findNavController().navigate(DrawerToDoFragmentDirections.actionDrawerToDoFragmentToTodoBottomMenuDialog(it))
             }
         }
@@ -39,6 +43,7 @@ class DrawerToDoFragment : BindingFragment<FragmentDrawerTodoBinding>(R.layout.f
         super.onCreateView(inflater, container, savedInstanceState)
         onCreateSupportActionBar()
         onCreateRecyclerView()
+        onCreateOnToDoAdd()
 
         return binding.root
     }
@@ -54,6 +59,14 @@ class DrawerToDoFragment : BindingFragment<FragmentDrawerTodoBinding>(R.layout.f
 
     private fun onCreateRecyclerView() {
         binding.recyclerView.adapter = todoAdapter
+    }
+
+    private fun onCreateOnToDoAdd() {
+        binding.setOnToDoAdd {
+            findNavController().navigate(DrawerToDoFragmentDirections.actionDrawerToDoFragmentToTodoEditActivity(
+                ToDo(drawerId = drawer.id)
+            ))
+        }
     }
 
     private fun onCreateToDoList() {

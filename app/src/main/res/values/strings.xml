@@ -21,4 +21,9 @@
     <string name="password">Password</string>
     <string name="name">Name</string>
     <string name="enter_the_name">Enter the name.</string>
+    <string name="verify_password">Verify Password</string>
+    <string name="ok">OK</string>
+    <string name="invalid_password">Invalid Password</string>
+    <string name="set_progress">Set Progress</string>
+    <string name="set_complete">Set Complete</string>
 </resources>

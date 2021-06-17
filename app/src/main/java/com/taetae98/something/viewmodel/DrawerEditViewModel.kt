@@ -11,10 +11,10 @@ class DrawerEditViewModel @Inject constructor(
     stateHandle: SavedStateHandle
 ): ViewModel() {
     companion object {
-        private const val ID = "id"
-        private const val NAME = "name"
-        private const val HAS_PASSWORD = "hasPassword"
-        private const val PASSWORD = "password"
+        private const val ID = "ID"
+        private const val NAME = "NAME"
+        private const val HAS_PASSWORD = "HAS_PASSWORD"
+        private const val PASSWORD = "PASSWORD"
     }
 
     val id = stateHandle.getLiveData(ID, 0L)
@@ -25,7 +25,7 @@ class DrawerEditViewModel @Inject constructor(
     fun update(drawer: Drawer) {
         id.value = drawer.id
         name.value = drawer.name
-        hasPassword.value = drawer.hasPassword
+        hasPassword.value = drawer.password != null
         password.value = drawer.password
     }
 }

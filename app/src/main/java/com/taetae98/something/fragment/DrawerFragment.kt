@@ -9,6 +9,7 @@ import com.taetae98.something.R
 import com.taetae98.something.adapter.DrawerAdapter
 import com.taetae98.something.base.BindingFragment
 import com.taetae98.something.databinding.FragmentDrawerBinding
+import com.taetae98.something.dialog.VerifyPasswordDialog
 import com.taetae98.something.repository.DrawerRepository
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -21,11 +22,23 @@ class DrawerFragment : BindingFragment<FragmentDrawerBinding>(R.layout.fragment_
     private val drawerAdapter by lazy {
         DrawerAdapter().apply {
             onDrawerClickCallback = {
-                findNavController().navigate(DrawerFragmentDirections.actionDrawerFragmentToDrawerToDoFragment(it))
+                if (it.password != null) {
+                    VerifyPasswordDialog(it.password!!) {
+                        findNavController().navigate(DrawerFragmentDirections.actionDrawerFragmentToDrawerToDoFragment(it))
+                    }.show(parentFragmentManager, null)
+                } else {
+                    findNavController().navigate(DrawerFragmentDirections.actionDrawerFragmentToDrawerToDoFragment(it))
+                }
             }
 
             onDrawerLongClickCallback = {
-                findNavController().navigate(DrawerFragmentDirections.actionDrawerFragmentToDrawerBottomMenuDialog(it))
+                if (it.password != null) {
+                    VerifyPasswordDialog(it.password!!) {
+                        findNavController().navigate(DrawerFragmentDirections.actionDrawerFragmentToDrawerBottomMenuDialog(it))
+                    }.show(parentFragmentManager, null)
+                } else {
+                    findNavController().navigate(DrawerFragmentDirections.actionDrawerFragmentToDrawerBottomMenuDialog(it))
+                }
             }
         }
     }

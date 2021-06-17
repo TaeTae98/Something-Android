@@ -29,4 +29,8 @@ class ToDoRepository @Inject constructor(
     fun findByDrawerIdLiveData(drawerId: Long): LiveData<List<ToDo>> {
         return todoDao.findByDrawerIdLiveData(drawerId)
     }
+
+    fun findHasNotPasswordAndNotFinishedLiveData(): LiveData<List<ToDo>> {
+        return todoDao.findHasNotPasswordAndNotFinishedLiveData()
+    }
 }

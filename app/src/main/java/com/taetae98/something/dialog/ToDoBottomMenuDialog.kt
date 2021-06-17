@@ -24,10 +24,11 @@ class ToDoBottomMenuDialog : BindingBottomSheetDialog<DialogTodoBottomMenuBindin
     private val args by navArgs<ToDoBottomMenuDialogArgs>()
     private val todo by lazy { args.todo }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
         onCreateOnEdit()
         onCreateOnDelete()
+        onCreateOnSwitchFinished()
 
         return binding.root
     }
@@ -42,6 +43,16 @@ class ToDoBottomMenuDialog : BindingBottomSheetDialog<DialogTodoBottomMenuBindin
         binding.setOnDelete {
             CoroutineScope(Dispatchers.IO).launch {
                 todoRepository.delete(todo)
+            }
+
+            findNavController().navigateUp()
+        }
+    }
+
+    private fun onCreateOnSwitchFinished() {
+        binding.setOnSwitchFinished {
+            CoroutineScope(Dispatchers.IO).launch {
+                todoRepository.update(todo.copy(isFinished = !todo.isFinished))
             }
 
             findNavController().navigateUp()

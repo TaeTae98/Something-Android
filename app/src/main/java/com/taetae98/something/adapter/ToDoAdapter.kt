@@ -24,6 +24,7 @@ class ToDoAdapter : BaseAdapter<ToDo>(itemCallback) {
     }
 
     var onToDoClickCallback: ((ToDo) -> Unit)? = null
+    var onToDoLongClickCallback: ((ToDo) -> Unit)? = null
 
     init {
         setHasStableIds(true)
@@ -49,6 +50,10 @@ class ToDoAdapter : BaseAdapter<ToDo>(itemCallback) {
         init {
             itemView.setOnClickListener {
                 onToDoClickCallback?.invoke(element)
+            }
+            itemView.setOnLongClickListener {
+                onToDoLongClickCallback?.invoke(element)
+                true
             }
         }
 
