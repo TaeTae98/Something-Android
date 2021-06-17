@@ -12,6 +12,7 @@ class ToDoEditViewModel @Inject constructor(
     stateHandle: SavedStateHandle,
 ): ViewModel() {
     companion object {
+        private const val ID = "id"
         private const val TITLE = "title"
         private const val DESCRIPTION = "description"
         private const val DRAWER_ID = "drawerID"
@@ -24,6 +25,7 @@ class ToDoEditViewModel @Inject constructor(
         private const val HAS_DRAWER = "hasDrawer"
     }
 
+    val id = stateHandle.getLiveData(ID, 0L)
     val title = stateHandle.getLiveData(TITLE, "")
     val description = stateHandle.getLiveData(DESCRIPTION, "")
     val drawerId = stateHandle.getLiveData<Long>(DRAWER_ID, null)
@@ -45,15 +47,26 @@ class ToDoEditViewModel @Inject constructor(
         drawerId.observeForever {
             hasDrawer.value = it != null
         }
+        hasTerm.observeForever {
+            if (it) {
+                if (beginDate.value == null) {
+                    beginDate.value = Date()
+                }
+                if (endDate.value == null) {
+                    endDate.value = Date()
+                }
+            }
+        }
     }
 
     fun update(todo: ToDo) {
+        id.value = todo.id
         title.value = todo.title
         description.value = todo.description
         drawerId.value = todo.drawerId
         isOnTop.value = todo.isOnTop
         isNotification.value = todo.isNotification
-        beginDate.value = todo.beginDate
-        endDate.value = todo.endDate
+        beginDate.value = todo.term?.beginDate
+        endDate.value = todo.term?.endDate
     }
 }

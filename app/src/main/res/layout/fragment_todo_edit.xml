@@ -254,6 +254,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent">
                             <com.google.android.material.textfield.TextInputEditText
+                                style="@style/Theme.Something.ToDo.Title"
                                 android:text="@={viewModel.title}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -273,6 +274,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/title_text_input_layout">
                             <com.google.android.material.textfield.TextInputEditText
+                                style="@style/Theme.Something.ToDo.Description"
                                 android:text="@={viewModel.description}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -285,7 +287,8 @@
         </androidx.core.widget.NestedScrollView>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:onClick="@{onFinish}"
-            android:src="@drawable/ic_finish"
+            android:src="@drawable/ic_finish_24"
+            android:contentDescription="@string/finish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
