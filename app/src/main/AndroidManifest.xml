@@ -2,24 +2,36 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.taetae98.something">
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:name=".MainApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon_something"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icon_something_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Something">
+        <receiver
+            android:name=".receiver.StickyReceiver"
+            android:enabled="true"
+            android:exported="true">
+
+        </receiver>
+
+        <service
+            android:name=".service.StickyService"
+            android:enabled="true"
+            android:exported="true" />
+
         <activity
             android:name=".activity.DrawerEditActivity"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activity.ToDoEditActivity"
-            android:windowSoftInputMode="adjustResize">
-
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

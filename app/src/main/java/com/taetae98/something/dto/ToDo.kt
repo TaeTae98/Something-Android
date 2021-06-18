@@ -11,7 +11,7 @@ import com.taetae98.something.viewmodel.ToDoEditViewModel
             entity = Drawer::class,
             parentColumns = ["drawerId"],
             childColumns = ["drawerId"],
-            onDelete = ForeignKey.SET_NULL,
+            onDelete = ForeignKey.CASCADE,
             onUpdate = ForeignKey.CASCADE
         )
     ],

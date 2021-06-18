@@ -117,7 +117,11 @@ class ToDoEditFragment : BindingFragment<FragmentTodoEditBinding>(R.layout.fragm
         }
 
         CoroutineScope(Dispatchers.IO).launch {
-            todoRepository.insert(ToDo.Factory.createFromToDoEditViewModel(viewModel))
+            if (viewModel.id.value == 0L) {
+                todoRepository.insert(ToDo.Factory.createFromToDoEditViewModel(viewModel))
+            } else {
+                todoRepository.update(ToDo.Factory.createFromToDoEditViewModel(viewModel))
+            }
         }
 
         finish()

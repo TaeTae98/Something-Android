@@ -21,8 +21,8 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/mainMoreFragment"
-        android:icon="@drawable/ic_more_horizontal_24"
-        android:title="@string/more"
+        android:id="@+id/settingFragment"
+        android:icon="@drawable/ic_setting_24"
+        android:title="@string/setting"
         app:showAsAction="ifRoom" />
 </menu>
