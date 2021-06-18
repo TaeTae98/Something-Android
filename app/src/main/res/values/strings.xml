@@ -2,7 +2,6 @@
     <string name="app_name">Something</string>
     <string name="todo">ToDo</string>
     <string name="calendar">Calendar</string>
-    <string name="more">More</string>
     <string name="drawer">Drawer</string>
     <string name="mark_at_the_top">Mark at the top</string>
     <string name="show_on_notification">Show on notification</string>
@@ -28,4 +27,8 @@
     <string name="set_complete">Set Complete</string>
     <string name="visible_in_todo">Visible In ToDo</string>
     <string name="visible_in_calendar">Visible In Calendar</string>
+    <string name="run_on_unlock">Run on unlock.</string>
+    <string name="setting">Setting</string>
+    <string name="require_permission">Require Permission</string>
+    <string name="request_permission">Request permission due to Google Policy.</string>
 </resources>

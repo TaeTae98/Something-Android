@@ -71,7 +71,7 @@ data class Drawer(
                 return Drawer(
                     viewModel.id.value!!,
                     viewModel.name.value!!,
-                    if (viewModel.hasPassword.value == true) viewModel.password.value else null,
+                    if (viewModel.hasPassword.value == true) viewModel.password.value ?: "" else null,
                     viewModel.isVisibleInToDoFragment.value!!,
                     viewModel.isVisibleInCalendarFragment.value!!
                 )

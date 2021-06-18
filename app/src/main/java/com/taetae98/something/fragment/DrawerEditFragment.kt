@@ -54,7 +54,11 @@ class DrawerEditFragment : BindingFragment<FragmentDrawerEditBinding>(R.layout.f
         }
 
         CoroutineScope(Dispatchers.IO).launch {
-            drawerRepository.insert(Drawer.Factory.createFromDrawerEditViewModel(viewModel))
+            if (viewModel.id.value == 0L) {
+                drawerRepository.insert(Drawer.Factory.createFromDrawerEditViewModel(viewModel))
+            } else {
+                drawerRepository.update(Drawer.Factory.createFromDrawerEditViewModel(viewModel))
+            }
         }
 
         finish()

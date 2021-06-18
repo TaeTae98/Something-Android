@@ -40,10 +40,14 @@
             app:destination="@id/drawerToDoFragment" />
     </fragment>
     <fragment
-        android:id="@+id/mainMoreFragment"
-        android:name="com.taetae98.something.fragment.MainMoreFragment"
-        android:label="@string/more"
-        tools:layout="@layout/fragment_main_more"/>
+        android:id="@+id/settingFragment"
+        android:name="com.taetae98.something.fragment.SettingFragment"
+        android:label="@string/setting"
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_settingFragment_to_somethingSettingFragment"
+            app:destination="@id/somethingSettingFragment" />
+    </fragment>
     <dialog
         android:id="@+id/todoBottomMenuDialog"
         android:name="com.taetae98.something.dialog.ToDoBottomMenuDialog"
@@ -110,4 +114,9 @@
             android:id="@+id/action_drawerToDoFragment_to_drawerEditActivity"
             app:destination="@id/drawerEditActivity" />
     </fragment>
+    <fragment
+        android:id="@+id/somethingSettingFragment"
+        android:name="com.taetae98.something.fragment.SomethingSettingFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_something_setting"/>
 </navigation>
