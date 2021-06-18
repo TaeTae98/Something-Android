@@ -32,6 +32,8 @@ data class Drawer(
     var name: String = "",
     @ColumnInfo(defaultValue = "null")
     var password: String? = null,
+    @ColumnInfo(defaultValue = "0")
+    var ordinal: Long = 0L,
     @ColumnInfo(defaultValue = "true")
     var isVisibleInToDoFragment: Boolean = true,
     @ColumnInfo(defaultValue = "true")
@@ -40,7 +42,7 @@ data class Drawer(
     constructor(parcel: Parcel) : this(
         parcel.readLong(),
         parcel.readString() ?: "",
-        parcel.readString() ?: ""
+        parcel.readString()
     )
 
     override fun describeContents(): Int {
