@@ -42,8 +42,8 @@ class SomethingSettingFragment : BindingFragment<FragmentSomethingSettingBinding
         settingRepository.isSticky.observe(viewLifecycleOwner) {
             if (it && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && !Settings.canDrawOverlays(requireContext())) {
                 AlertDialog.Builder(requireContext()).apply {
-                    setTitle(R.string.request_permission)
-                    setMessage(context.getString(R.string.require_permission))
+                    setTitle(R.string.require_permission)
+                    setMessage(context.getString(R.string.request_permission))
                     setPositiveButton(context.getString(R.string.ok)) { _, _ ->
                         startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:${requireContext().packageName}")))
                         settingRepository.isSticky.value = false
