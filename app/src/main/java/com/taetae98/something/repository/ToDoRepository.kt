@@ -30,7 +30,11 @@ class ToDoRepository @Inject constructor(
         return todoDao.findByDrawerIdLiveData(drawerId)
     }
 
-    fun findHasNotPasswordAndNotFinishedLiveData(): LiveData<List<ToDo>> {
+    fun findInToDoFragmentLiveData(): LiveData<List<ToDo>> {
         return todoDao.findInToDoFragmentLiveData()
+    }
+
+    fun findIsNotFinishedAndIsNotificationLiveData(): LiveData<List<ToDo>> {
+        return todoDao.findIsNotFinishedAndIsNotificationLiveData()
     }
 }

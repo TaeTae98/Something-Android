@@ -20,4 +20,7 @@ interface ToDoDao : BaseDao<ToDo> {
 
     @Query("SELECT * FROM ToDo LEFT OUTER JOIN Drawer ON ToDo.drawerId = Drawer.drawerId WHERE password IS NULL AND isFinished = 0 AND (isVisibleInToDoFragment = 1 OR isVisibleInToDoFragment IS NULL) $ORDER")
     fun findInToDoFragmentLiveData(): LiveData<List<ToDo>>
+
+    @Query("SELECT * FROM ToDo WHERE isFinished = 0 AND isNotification = 1")
+    fun findIsNotFinishedAndIsNotificationLiveData(): LiveData<List<ToDo>>
 }
