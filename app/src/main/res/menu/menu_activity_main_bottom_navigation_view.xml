@@ -21,6 +21,12 @@
         app:showAsAction="ifRoom" />
 
     <item
+        android:id="@+id/finishedFragment"
+        android:icon="@drawable/ic_verified_24"
+        android:title="@string/finish"
+        app:showAsAction="ifRoom" />
+
+    <item
         android:id="@+id/settingFragment"
         android:icon="@drawable/ic_setting_24"
         android:title="@string/setting"
