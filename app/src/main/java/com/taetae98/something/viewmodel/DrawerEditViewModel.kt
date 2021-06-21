@@ -14,6 +14,7 @@ class DrawerEditViewModel @Inject constructor(
         private const val ID = "ID"
         private const val NAME = "NAME"
         private const val PASSWORD = "PASSWORD"
+        private const val ORDINAL = "ORDINAL"
         private const val IS_VISIBLE_IN_TODO_FRAGMENT = "IS_VISIBLE_IN_TODO_FRAGMENT"
         private const val IS_VISIBLE_IN_CALENDAR_FRAGMENT = "IS_VISIBLE_IN_CALENDAR_FRAGMENT"
 
@@ -23,6 +24,7 @@ class DrawerEditViewModel @Inject constructor(
     val id = stateHandle.getLiveData(ID, 0L)
     val name = stateHandle.getLiveData(NAME, "")
     val password = stateHandle.getLiveData<String>(PASSWORD, null)
+    val ordinal = stateHandle.getLiveData(ORDINAL, 0L)
     val isVisibleInToDoFragment = stateHandle.getLiveData(IS_VISIBLE_IN_TODO_FRAGMENT, true)
     val isVisibleInCalendarFragment = stateHandle.getLiveData(IS_VISIBLE_IN_CALENDAR_FRAGMENT, true)
 

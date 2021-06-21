@@ -62,7 +62,7 @@ class ToDoFragment : BindingFragment<FragmentTodoBinding>(R.layout.fragment_todo
     }
 
     private fun onCreateToDoList() {
-        todoRepository.findHasNotPasswordAndNotFinishedLiveData().observe(viewLifecycleOwner) {
+        todoRepository.findInToDoFragmentLiveData().observe(viewLifecycleOwner) {
             todoAdapter.submitList(it)
         }
     }

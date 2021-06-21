@@ -42,7 +42,10 @@ data class Drawer(
     constructor(parcel: Parcel) : this(
         parcel.readLong(),
         parcel.readString() ?: "",
-        parcel.readString()
+        parcel.readString(),
+        parcel.readLong(),
+        parcel.readByte() == 1.toByte(),
+        parcel.readByte() == 1.toByte(),
     )
 
     override fun describeContents(): Int {
@@ -54,6 +57,9 @@ data class Drawer(
             writeLong(id)
             writeString(name)
             writeString(password)
+            writeLong(ordinal)
+            writeByte(if (isVisibleInToDoFragment) 1 else 0)
+            writeByte(if (isVisibleInCalendarFragment) 1 else 0)
         }
     }
 
@@ -74,6 +80,7 @@ data class Drawer(
                     viewModel.id.value!!,
                     viewModel.name.value!!,
                     if (viewModel.hasPassword.value == true) viewModel.password.value ?: "" else null,
+                    viewModel.ordinal.value!!,
                     viewModel.isVisibleInToDoFragment.value!!,
                     viewModel.isVisibleInCalendarFragment.value!!
                 )

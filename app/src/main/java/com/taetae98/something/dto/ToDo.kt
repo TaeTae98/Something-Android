@@ -59,9 +59,9 @@ data class ToDo(
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readLong().let { if (it == 0L) null else it },
-        parcel.readByte() != 0.toByte(),
-        parcel.readByte() != 0.toByte(),
-        parcel.readByte() != 0.toByte(),
+        parcel.readByte() == 1.toByte(),
+        parcel.readByte() == 1.toByte(),
+        parcel.readByte() == 1.toByte(),
         parcel.readParcelable(Term::class.java.classLoader),
     )
 
@@ -75,9 +75,9 @@ data class ToDo(
             writeString(title)
             writeString(description)
             writeLong(drawerId ?: 0)
-            writeByte(if (isFinished) 1 else 0)
             writeByte(if (isOnTop) 1 else 0)
             writeByte(if (isNotification) 1 else 0)
+            writeByte(if (isFinished) 1 else 0)
             writeParcelable(term, flags)
         }
     }

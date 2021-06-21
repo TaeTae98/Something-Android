@@ -33,6 +33,11 @@ class ToDoBottomMenuDialog : BindingBottomSheetDialog<DialogTodoBottomMenuBindin
         return binding.root
     }
 
+    override fun onCreateViewDataBinding() {
+        super.onCreateViewDataBinding()
+        binding.todo = todo
+    }
+
     private fun onCreateOnEdit() {
         binding.setOnEdit {
             findNavController().navigate(ToDoBottomMenuDialogDirections.actionToDoBottomMenuDialogToToDoEditActivity(todo))
