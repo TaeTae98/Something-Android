@@ -23,4 +23,7 @@ interface ToDoDao : BaseDao<ToDo> {
 
     @Query("SELECT * FROM ToDo WHERE isFinished = 0 AND isNotification = 1")
     fun findIsNotFinishedAndIsNotificationLiveData(): LiveData<List<ToDo>>
+
+    @Query("SELECT * FROM ToDo WHERE isFinished = 1 $ORDER")
+    fun findIsFinishedLiveData(): LiveData<List<ToDo>>
 }

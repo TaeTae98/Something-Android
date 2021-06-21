@@ -37,4 +37,8 @@ class ToDoRepository @Inject constructor(
     fun findIsNotFinishedAndIsNotificationLiveData(): LiveData<List<ToDo>> {
         return todoDao.findIsNotFinishedAndIsNotificationLiveData()
     }
+
+    fun findIsFinishedLiveData(): LiveData<List<ToDo>> {
+        return todoDao.findIsFinishedLiveData()
+    }
 }

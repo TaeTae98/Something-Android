@@ -13,7 +13,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     override val appBarConfiguration by lazy {
         AppBarConfiguration(
             setOf(
-                R.id.todoFragment, R.id.calendarFragment, R.id.drawerFragment, R.id.settingFragment
+                R.id.todoFragment, R.id.calendarFragment, R.id.drawerFragment, R.id.finishedFragment, R.id.settingFragment
             )
         )
     }

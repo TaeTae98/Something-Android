@@ -119,4 +119,16 @@
         android:name="com.taetae98.something.fragment.SomethingSettingFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_something_setting"/>
+    <fragment
+        android:id="@+id/finishedFragment"
+        android:name="com.taetae98.something.fragment.FinishedFragment"
+        android:label="@string/finish"
+        tools:layout="@layout/fragment_finished">
+        <action
+            android:id="@+id/action_finishedFragment_to_todoBottomMenuDialog"
+            app:destination="@id/todoBottomMenuDialog" />
+        <action
+            android:id="@+id/action_finishedFragment_to_todoEditActivity"
+            app:destination="@id/todoEditActivity" />
+    </fragment>
 </navigation>
