@@ -10,11 +10,11 @@ abstract class BaseHolder<VB: ViewDataBinding, E: Any>(protected val binding: VB
 
     lateinit var element: E
 
-    open fun bind(element: E) {
+    open fun onBind(element: E) {
         this.element = element
     }
 
-    open fun bind(element: E, payload: MutableList<Any>) {
+    open fun onBind(element: E, payload: MutableList<Any>) {
 
     }
 }

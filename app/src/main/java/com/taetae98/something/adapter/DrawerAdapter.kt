@@ -57,8 +57,8 @@ class DrawerAdapter : BaseAdapter<Drawer>(itemCallback) {
                 true
             }
         }
-        override fun bind(element: Drawer) {
-            super.bind(element)
+        override fun onBind(element: Drawer) {
+            super.onBind(element)
             binding.drawer = element
         }
     }

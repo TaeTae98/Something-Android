@@ -2,12 +2,15 @@ package com.taetae98.something.view
 
 import android.content.Context
 import android.util.AttributeSet
+import androidx.core.view.setPadding
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.taetae98.something.R
 import com.taetae98.something.adapter.ToDoAdapter
 import com.taetae98.something.repository.ToDoRepository
+import com.taetae98.something.toDp
+import com.taetae98.something.utility.SpacingItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +24,13 @@ class ToDoRecyclerView @JvmOverloads constructor(context: Context, attrs: Attrib
     lateinit var todoRepository: ToDoRepository
 
     init {
+        clipToPadding = false
+        context.theme.obtainStyledAttributes(attrs, R.styleable.SettingItemView, defStyleAttr, defStyleRes).apply {
+            val margin = getInt(R.styleable.ToDoRecyclerView_item_margin, 10)
+            setPadding((margin / 2).toDp())
+            addItemDecoration(SpacingItemDecoration((margin / 2).toDp()))
+        }
+
         ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
             override fun onMove(recyclerView: RecyclerView, viewHolder: ViewHolder, target: ViewHolder): Boolean {
                 return false

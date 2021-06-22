@@ -13,8 +13,13 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="colorControlNormal">@color/white</item>
-        <item name="titleColor">@color/white</item>
         <item name="toolbarStyle">@style/Theme.Something.Toolbar</item>
         <item name="materialButtonStyle">@style/Theme.Something.Button</item>
+        <item name="colorOnElement">@color/black</item>
+        <item name="colorElement">@color/white</item>
+        <item name="colorOnElementVariant">@color/nickel</item>
+        <item name="colorWeek">@color/black</item>
+        <item name="colorSunday">@color/red</item>
+        <item name="colorSaturday">@color/blue</item>
     </style>
 </resources>

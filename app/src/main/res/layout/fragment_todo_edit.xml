@@ -153,6 +153,7 @@
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/begin_text_view"
+                                android:text="@{viewModel.beginDate.toString()}"
                                 android:onClick="@{onSetBeginDate}"
                                 android:clickable="@{viewModel.hasTerm}"
                                 android:alpha="@{viewModel.hasTerm ? 1.0F : 0.3F}"
@@ -161,7 +162,6 @@
                                 android:layout_marginStart="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:textAlignment="center"
-                                app:date="@{viewModel.beginDate}"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@id/end_text_view"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -170,6 +170,7 @@
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/end_text_view"
+                                android:text="@{viewModel.endDate.toString()}"
                                 android:onClick="@{onSetEndDate}"
                                 android:clickable="@{viewModel.hasTerm}"
                                 android:alpha="@{viewModel.hasTerm ? 1.0F : 0.3F}"
@@ -178,7 +179,6 @@
                                 android:layout_marginEnd="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:textAlignment="center"
-                                app:date="@{viewModel.endDate}"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/begin_text_view"
