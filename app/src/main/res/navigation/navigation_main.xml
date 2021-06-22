@@ -23,6 +23,9 @@
         android:name="com.taetae98.something.fragment.CalendarFragment"
         android:label="@string/calendar"
         tools:layout="@layout/fragment_calendar">
+        <action
+            android:id="@+id/action_calendarFragment_to_calendarDayDialog"
+            app:destination="@id/calendarDayDialog" />
     </fragment>
     <fragment
         android:id="@+id/drawerFragment"
@@ -131,4 +134,18 @@
             android:id="@+id/action_finishedFragment_to_todoEditActivity"
             app:destination="@id/todoEditActivity" />
     </fragment>
+    <dialog
+        android:id="@+id/calendarDayDialog"
+        android:name="com.taetae98.something.dialog.CalendarDayDialog"
+        tools:layout="@layout/dialog_calendar_day" >
+        <action
+            android:id="@+id/action_calendarDayDialog_to_todoEditActivity"
+            app:destination="@id/todoEditActivity" />
+        <argument
+            android:name="date"
+            app:argType="com.taetae98.something.dto.Date" />
+        <action
+            android:id="@+id/action_calendarDayDialog_to_todoBottomMenuDialog"
+            app:destination="@id/todoBottomMenuDialog" />
+    </dialog>
 </navigation>

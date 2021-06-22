@@ -45,7 +45,7 @@ class ToDoCalendarView @JvmOverloads constructor(context: Context, attrs: Attrib
 
     }
     private var currentToDoList by Delegates.observable(emptyList<ToDo>()) { _, _, _ ->
-        viewPagerAdapter.notifyItemChanged(currentPosition)
+        viewPagerAdapter.notifyDataSetChanged()
     }
     private var currentPosition = Int.MAX_VALUE / 2
 
