@@ -45,7 +45,7 @@ class CalendarFragment : BindingFragment<FragmentCalendarBinding>(R.layout.fragm
 
     private fun onCreateCalendarView() {
         binding.calendarView.onDateClickListener = {
-            findNavController().navigate(CalendarFragmentDirections.actionCalendarFragmentToCalendarDayDialog(it))
+            findNavController().navigate(CalendarFragmentDirections.actionCalendarFragmentToCalendarDayDialog(it, true))
         }
     }
 

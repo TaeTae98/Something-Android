@@ -16,7 +16,11 @@
             app:destination="@id/todoBottomMenuDialog" />
         <action
             android:id="@+id/action_todoFragment_to_toDoEditActivity"
-            app:destination="@id/todoEditActivity" />
+            app:destination="@id/todoEditActivity"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right" />
     </fragment>
     <fragment
         android:id="@+id/calendarFragment"
@@ -34,13 +38,21 @@
         tools:layout="@layout/fragment_drawer">
         <action
             android:id="@+id/action_drawerFragment_to_drawerEditActivity"
-            app:destination="@id/drawerEditActivity" />
+            app:destination="@id/drawerEditActivity"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right"/>
         <action
             android:id="@+id/action_drawerFragment_to_drawerBottomMenuDialog"
             app:destination="@id/drawerBottomMenuDialog" />
         <action
             android:id="@+id/action_drawerFragment_to_drawerToDoFragment"
-            app:destination="@id/drawerToDoFragment" />
+            app:destination="@id/drawerToDoFragment"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right"/>
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
@@ -49,7 +61,11 @@
         tools:layout="@layout/fragment_setting">
         <action
             android:id="@+id/action_settingFragment_to_somethingSettingFragment"
-            app:destination="@id/somethingSettingFragment" />
+            app:destination="@id/somethingSettingFragment"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right"/>
     </fragment>
     <dialog
         android:id="@+id/todoBottomMenuDialog"
@@ -63,7 +79,11 @@
             android:id="@+id/action_toDoBottomMenuDialog_to_toDoEditActivity"
             app:destination="@id/todoEditActivity"
             app:popUpTo="@id/todoBottomMenuDialog"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right"/>
     </dialog>
     <activity
         android:id="@+id/todoEditActivity"
@@ -95,7 +115,11 @@
         <action
             android:id="@+id/action_drawerBottomMenuDialog_to_drawerEditActivity"
             app:destination="@id/drawerEditActivity"
-            app:popUpTo="@id/drawerFragment" />
+            app:popUpTo="@id/drawerFragment"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right"/>
         <argument
             android:name="drawer"
             app:argType="com.taetae98.something.dto.Drawer" />
@@ -112,10 +136,18 @@
             app:destination="@id/todoBottomMenuDialog" />
         <action
             android:id="@+id/action_drawerToDoFragment_to_todoEditActivity"
-            app:destination="@id/todoEditActivity" />
+            app:destination="@id/todoEditActivity"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right"/>
         <action
             android:id="@+id/action_drawerToDoFragment_to_drawerEditActivity"
-            app:destination="@id/drawerEditActivity" />
+            app:destination="@id/drawerEditActivity"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right"/>
     </fragment>
     <fragment
         android:id="@+id/somethingSettingFragment"
@@ -132,7 +164,11 @@
             app:destination="@id/todoBottomMenuDialog" />
         <action
             android:id="@+id/action_finishedFragment_to_todoEditActivity"
-            app:destination="@id/todoEditActivity" />
+            app:destination="@id/todoEditActivity"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right"/>
     </fragment>
     <dialog
         android:id="@+id/calendarDayDialog"
@@ -140,12 +176,19 @@
         tools:layout="@layout/dialog_calendar_day" >
         <action
             android:id="@+id/action_calendarDayDialog_to_todoEditActivity"
-            app:destination="@id/todoEditActivity" />
+            app:destination="@id/todoEditActivity"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right"/>
         <argument
             android:name="date"
             app:argType="com.taetae98.something.dto.Date" />
         <action
             android:id="@+id/action_calendarDayDialog_to_todoBottomMenuDialog"
             app:destination="@id/todoBottomMenuDialog" />
+        <argument
+            android:name="showFinishedToDo"
+            app:argType="boolean" />
     </dialog>
 </navigation>

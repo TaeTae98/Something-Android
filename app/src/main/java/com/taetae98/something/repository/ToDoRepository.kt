@@ -1,6 +1,7 @@
 package com.taetae98.something.repository
 
 import androidx.lifecycle.LiveData
+import com.taetae98.something.dto.Date
 import com.taetae98.something.dto.ToDo
 import com.taetae98.something.room.ToDoDao
 import javax.inject.Inject
@@ -22,16 +23,16 @@ class ToDoRepository @Inject constructor(
         todoDao.update(todo)
     }
 
-    fun findAllLiveDate(): LiveData<List<ToDo>> {
-        return todoDao.findAllLiveData()
-    }
-
     fun findByDrawerIdLiveData(drawerId: Long): LiveData<List<ToDo>> {
         return todoDao.findByDrawerIdLiveData(drawerId)
     }
 
     fun findInToDoFragmentLiveData(): LiveData<List<ToDo>> {
         return todoDao.findInToDoFragmentLiveData()
+    }
+
+    fun findInCalendarDayDialogLiveData(date: Date): LiveData<List<ToDo>> {
+        return todoDao.findInCalendarDayDialogLiveData(date)
     }
 
     fun findIsNotFinishedAndIsNotificationLiveData(): LiveData<List<ToDo>> {

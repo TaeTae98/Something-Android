@@ -160,7 +160,7 @@ class ToDoCalendarView @JvmOverloads constructor(context: Context, attrs: Attrib
 
                         override fun onSingleTapUp(e: MotionEvent): Boolean {
                             val x = (e.x / (view.width / 7)).toInt()
-                            val date = firstDay.apply { dayOfMonth += (y * 7 + x) }
+                            val date = firstDay.copy(Date.DAY_OF_MONTH, (y * 7 + x))
                             setDate(date)
                             onDateClickListener?.invoke(date)
                             return true
