@@ -31,4 +31,11 @@
     <string name="setting">Setting</string>
     <string name="require_permission">Require Permission</string>
     <string name="request_permission">Request permission due to Google Policy</string>
+    <string name="sun">Sun</string>
+    <string name="sat">Sat</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
 </resources>

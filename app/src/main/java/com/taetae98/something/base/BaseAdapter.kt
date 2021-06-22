@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.ListAdapter
 
 abstract class BaseAdapter<E: Any>(itemCallback: DiffUtil.ItemCallback<E>) : ListAdapter<E, BaseHolder<out ViewDataBinding, E>>(itemCallback) {
     override fun onBindViewHolder(holder: BaseHolder<out ViewDataBinding, E>, position: Int) {
-        holder.bind(getItem(position))
+        holder.onBind(getItem(position))
     }
 
     override fun onBindViewHolder(holder: BaseHolder<out ViewDataBinding, E>, position: Int, payloads: MutableList<Any>) {
         super.onBindViewHolder(holder, position, payloads)
-        holder.bind(getItem(position), payloads)
+        holder.onBind(getItem(position), payloads)
     }
 }

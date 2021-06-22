@@ -1,12 +1,11 @@
 package com.taetae98.something.dto
 
-import android.os.Parcel
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.taetae98.something.viewmodel.DrawerEditViewModel
+import java.io.Serializable
 
 @Entity(
     indices = [
@@ -38,41 +37,7 @@ data class Drawer(
     var isVisibleInToDoFragment: Boolean = true,
     @ColumnInfo(defaultValue = "true")
     var isVisibleInCalendarFragment: Boolean = true,
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readLong(),
-        parcel.readString() ?: "",
-        parcel.readString(),
-        parcel.readLong(),
-        parcel.readByte() == 1.toByte(),
-        parcel.readByte() == 1.toByte(),
-    )
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    override fun writeToParcel(dest: Parcel, flags: Int) {
-        with(dest) {
-            writeLong(id)
-            writeString(name)
-            writeString(password)
-            writeLong(ordinal)
-            writeByte(if (isVisibleInToDoFragment) 1 else 0)
-            writeByte(if (isVisibleInCalendarFragment) 1 else 0)
-        }
-    }
-
-    companion object CREATOR : Parcelable.Creator<Drawer> {
-        override fun createFromParcel(parcel: Parcel): Drawer {
-            return Drawer(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Drawer?> {
-            return arrayOfNulls(size)
-        }
-    }
-
+) : Serializable {
     class Factory {
         companion object {
             fun createFromDrawerEditViewModel(viewModel: DrawerEditViewModel): Drawer {

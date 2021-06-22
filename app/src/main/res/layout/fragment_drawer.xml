@@ -27,10 +27,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:title="@string/drawer"/>
 
-            <androidx.recyclerview.widget.RecyclerView
+            <com.taetae98.something.view.DrawerRecyclerView
                 android:id="@+id/recycler_view"
-                android:padding="5dp"
-                android:clipToPadding="false"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:spanCount="2"

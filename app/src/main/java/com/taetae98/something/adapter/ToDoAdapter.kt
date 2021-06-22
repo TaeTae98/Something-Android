@@ -57,8 +57,8 @@ class ToDoAdapter : BaseAdapter<ToDo>(itemCallback) {
             }
         }
 
-        override fun bind(element: ToDo) {
-            super.bind(element)
+        override fun onBind(element: ToDo) {
+            super.onBind(element)
             binding.todo = element
         }
     }

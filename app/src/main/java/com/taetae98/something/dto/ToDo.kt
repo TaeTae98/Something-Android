@@ -1,9 +1,8 @@
 package com.taetae98.something.dto
 
-import android.os.Parcel
-import android.os.Parcelable
 import androidx.room.*
 import com.taetae98.something.viewmodel.ToDoEditViewModel
+import java.io.Serializable
 
 @Entity(
     foreignKeys = [
@@ -53,45 +52,7 @@ data class ToDo(
     var isFinished: Boolean = false,
     @Embedded
     var term: Term? = null
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readLong(),
-        parcel.readString() ?: "",
-        parcel.readString() ?: "",
-        parcel.readLong().let { if (it == 0L) null else it },
-        parcel.readByte() == 1.toByte(),
-        parcel.readByte() == 1.toByte(),
-        parcel.readByte() == 1.toByte(),
-        parcel.readParcelable(Term::class.java.classLoader),
-    )
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    override fun writeToParcel(dest: Parcel, flags: Int) {
-        with(dest) {
-            writeLong(id)
-            writeString(title)
-            writeString(description)
-            writeLong(drawerId ?: 0)
-            writeByte(if (isOnTop) 1 else 0)
-            writeByte(if (isNotification) 1 else 0)
-            writeByte(if (isFinished) 1 else 0)
-            writeParcelable(term, flags)
-        }
-    }
-
-    companion object CREATOR : Parcelable.Creator<ToDo> {
-        override fun createFromParcel(parcel: Parcel): ToDo {
-            return ToDo(parcel)
-        }
-
-        override fun newArray(size: Int): Array<ToDo?> {
-            return arrayOfNulls(size)
-        }
-    }
-
+) : Serializable {
     class Factory {
         companion object {
             fun createFromToDoEditViewModel(viewModel: ToDoEditViewModel): ToDo {
