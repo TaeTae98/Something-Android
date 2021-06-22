@@ -7,6 +7,10 @@
         <variable
             name="date"
             type="com.taetae98.something.dto.Date" />
+
+        <variable
+            name="onCalendarHeadClick"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <LinearLayout
@@ -16,6 +20,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/Theme.Something.Calendar.Head"
+            android:onClick="@{onCalendarHeadClick}"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,334 +74,726 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+
         <GridLayout
-            android:columnCount="7"
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:columnCount="7"
+            android:contentDescription="row"
+            tools:ignore="HardcodedText">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Sunday"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="1" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Sunday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="2" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                tools:text="3" />
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="2" />
+            </LinearLayout>
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                tools:text="4" />
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="5" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="6" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Saturday"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="7" />
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="6" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Saturday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="7" />
+            </LinearLayout>
         </GridLayout>
         <GridLayout
-            android:columnCount="7"
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:columnCount="7"
+            android:contentDescription="row"
+            tools:ignore="HardcodedText">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Sunday"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="1" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Sunday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="2" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="3" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="4" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="5" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="6" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Saturday"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="6" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="7" />
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Saturday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="7" />
+            </LinearLayout>
         </GridLayout>
         <GridLayout
-            android:columnCount="7"
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:columnCount="7"
+            android:contentDescription="row"
+            tools:ignore="HardcodedText">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Sunday"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="1" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Sunday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="2" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="3" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="4" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="5" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="6" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Saturday"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="6" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="7" />
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Saturday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="7" />
+            </LinearLayout>
         </GridLayout>
         <GridLayout
-            android:columnCount="7"
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:columnCount="7"
+            android:contentDescription="row"
+            tools:ignore="HardcodedText">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Sunday"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="1" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Sunday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="2" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="3" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="4" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="5" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="6" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Saturday"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="6" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="7" />
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Saturday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="7" />
+            </LinearLayout>
         </GridLayout>
         <GridLayout
-            android:columnCount="7"
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:columnCount="7"
+            android:contentDescription="row"
+            tools:ignore="HardcodedText">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Sunday"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="1" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Sunday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="2" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="3" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="4" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="5" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="6" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Saturday"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="6" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="7" />
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Saturday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="7" />
+            </LinearLayout>
         </GridLayout>
         <GridLayout
-            android:columnCount="7"
-            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:columnCount="7"
+            android:contentDescription="row"
+            tools:ignore="HardcodedText">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Sunday"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="1" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Sunday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="2" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="3" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="4" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="5" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Week"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="6" />
+                android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/Theme.Somethong.WeekItem.Saturday"
-                android:layout_width="0dp"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Week"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="6" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight="1"
-                tools:text="7" />
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Theme.Somethong.WeekItem.Saturday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    tools:text="7" />
+            </LinearLayout>
         </GridLayout>
     </LinearLayout>
 </layout>

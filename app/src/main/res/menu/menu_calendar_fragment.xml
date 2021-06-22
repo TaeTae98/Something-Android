@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/drawer"
-        android:icon="@drawable/ic_drawer_24"
-        android:title="@string/drawer"
+        android:id="@+id/today"
+        android:icon="@drawable/ic_today_24"
+        android:title="@string/today"
         app:showAsAction="ifRoom" />
 </menu>

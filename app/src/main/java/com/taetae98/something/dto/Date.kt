@@ -27,14 +27,19 @@ data class Date(
         }
     }
 
-    val timeInMillis: Long
+    val dayOfWeek: Int
         get() {
-            return GregorianCalendar(year, month, dayOfMonth).timeInMillis
+            return GregorianCalendar(year, month, dayOfMonth).get(Calendar.DAY_OF_WEEK)
         }
 
     val maxDayOfMonth: Int
         get() {
             return MAX_DAY_OF_MONTH[if (isLeapYear(year)) 1 else 0][month]
+        }
+
+    val timeInMillis: Long
+        get() {
+            return GregorianCalendar(year, month, dayOfMonth).timeInMillis
         }
 
     fun copy(flag: Int, diff: Int): Date {
