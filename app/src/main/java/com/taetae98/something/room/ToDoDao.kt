@@ -21,6 +21,12 @@ interface ToDoDao : BaseDao<ToDo> {
     @Query("SELECT * FROM ToDo LEFT OUTER JOIN Drawer ON ToDo.drawerId = Drawer.drawerId WHERE password IS NULL AND isFinished = 0 AND (isVisibleInToDoFragment = 1 OR isVisibleInToDoFragment IS NULL) $ORDER")
     fun findInToDoFragmentLiveData(): LiveData<List<ToDo>>
 
+    @Query("SELECT * FROM ToDo LEFT OUTER JOIN Drawer ON ToDo.drawerId = Drawer.drawerId WHERE password IS NULL AND beginDate IS NOT NULL AND endDate IS NOT NULL AND isFinished = 0 AND (isVisibleInCalendarFragment = 1 OR isVisibleInCalendarFragment IS NULL) $ORDER")
+    fun findInCalendarFragmentIsNotFinishedLiveData(): LiveData<List<ToDo>>
+
+    @Query("SELECT * FROM ToDo LEFT OUTER JOIN Drawer ON ToDo.drawerId = Drawer.drawerId WHERE password IS NULL AND beginDate IS NOT NULL AND endDate IS NOT NULL AND (isVisibleInCalendarFragment = 1 OR isVisibleInCalendarFragment IS NULL) $ORDER")
+    fun findInCalendarFragmentLiveData(): LiveData<List<ToDo>>
+
     @Query("SELECT * FROM ToDo WHERE isFinished = 0 AND isNotification = 1")
     fun findIsNotFinishedAndIsNotificationLiveData(): LiveData<List<ToDo>>
 

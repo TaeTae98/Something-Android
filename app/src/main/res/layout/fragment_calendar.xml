@@ -20,6 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:title="@string/calendar" />
         <com.taetae98.something.view.ToDoCalendarView
+            android:id="@+id/calendar_view"
             android:layout_margin="10dp"
             android:layout_width="0dp"
             android:layout_height="0dp"

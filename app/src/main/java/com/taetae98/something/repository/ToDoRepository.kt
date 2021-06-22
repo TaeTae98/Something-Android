@@ -38,6 +38,10 @@ class ToDoRepository @Inject constructor(
         return todoDao.findIsNotFinishedAndIsNotificationLiveData()
     }
 
+    fun findInCalendarFragmentLiveData(): LiveData<List<ToDo>> {
+        return todoDao.findInCalendarFragmentLiveData()
+    }
+
     fun findIsFinishedLiveData(): LiveData<List<ToDo>> {
         return todoDao.findIsFinishedLiveData()
     }
