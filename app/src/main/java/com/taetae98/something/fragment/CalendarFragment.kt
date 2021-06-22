@@ -2,7 +2,7 @@ package com.taetae98.something.fragment
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.taetae98.something.R
 import com.taetae98.something.base.BindingFragment
 import com.taetae98.something.databinding.FragmentCalendarBinding
@@ -45,7 +45,7 @@ class CalendarFragment : BindingFragment<FragmentCalendarBinding>(R.layout.fragm
 
     private fun onCreateCalendarView() {
         binding.calendarView.onDateClickListener = {
-            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG).show()
+            findNavController().navigate(CalendarFragmentDirections.actionCalendarFragmentToCalendarDayDialog(it))
         }
     }
 
