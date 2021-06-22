@@ -30,6 +30,15 @@ class DrawerEditViewModel @Inject constructor(
 
     val hasPassword = stateHandle.getLiveData(HAS_PASSWORD, false)
 
+    init {
+        hasPassword.observeForever {
+            if (it) {
+                isVisibleInToDoFragment.value = false
+                isVisibleInCalendarFragment.value = false
+            }
+        }
+    }
+
     fun update(drawer: Drawer) {
         id.value = drawer.id
         name.value = drawer.name

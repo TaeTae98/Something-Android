@@ -23,6 +23,7 @@ class CalendarDayDialog : BindingDialog<DialogCalendarDayBinding>(R.layout.dialo
 
     private val args by navArgs<CalendarDayDialogArgs>()
     private val date by lazy { args.date }
+    private val showFinishedToDo by lazy { args.showFinishedToDo }
 
     private val todoAdapter by lazy { ToDoAdapter().apply {
         onToDoClickCallback = {
@@ -40,6 +41,7 @@ class CalendarDayDialog : BindingDialog<DialogCalendarDayBinding>(R.layout.dialo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setAnimation(R.style.Theme_Something_Animation_Popup)
         onCreateToDoList()
     }
 
@@ -69,7 +71,7 @@ class CalendarDayDialog : BindingDialog<DialogCalendarDayBinding>(R.layout.dialo
     }
 
     private fun onCreateToDoList() {
-        todoRepository.findInCalendarFragmentLiveData().observe(viewLifecycleOwner) {
+        todoRepository.findInCalendarDayDialogLiveData(date).observe(viewLifecycleOwner) {
             todoAdapter.submitList(it)
         }
     }

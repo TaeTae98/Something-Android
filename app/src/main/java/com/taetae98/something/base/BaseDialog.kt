@@ -1,7 +1,8 @@
 package com.taetae98.something.base
 
-import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.view.ViewGroup
+import androidx.annotation.StyleRes
 import androidx.fragment.app.DialogFragment
 
 abstract class BaseDialog : DialogFragment() {
@@ -9,11 +10,11 @@ abstract class BaseDialog : DialogFragment() {
         dialog?.window?.setLayout(width, height)
     }
 
-    protected fun setBackground(color: Int) {
-        dialog?.window?.setBackgroundDrawable(ColorDrawable(color))
+    protected fun setBackground(drawable: Drawable) {
+        dialog?.window?.setBackgroundDrawable(drawable)
     }
 
-    protected fun setAnimation(resId: Int) {
+    protected fun setAnimation(@StyleRes resId: Int) {
         dialog?.window?.attributes?.windowAnimations = resId
     }
 }

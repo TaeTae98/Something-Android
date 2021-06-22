@@ -50,7 +50,7 @@
                         android:layout_margin="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/password_card_view"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent">
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,6 +58,8 @@
                             android:layout_height="wrap_content">
 
                             <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:alpha="@{!viewModel.hasPassword ? 1.0F : 0.3F}"
+                                android:enabled="@{!viewModel.hasPassword}"
                                 android:id="@+id/is_visible_in_todo_fragment"
                                 android:text="@string/visible_in_todo"
                                 android:checked="@={viewModel.isVisibleInToDoFragment}"
@@ -70,6 +72,8 @@
                                 app:layout_constraintEnd_toEndOf="parent" />
 
                             <com.google.android.material.switchmaterial.SwitchMaterial
+                                android:alpha="@{!viewModel.hasPassword ? 1.0F : 0.3F}"
+                                android:enabled="@{!viewModel.hasPassword}"
                                 android:id="@+id/is_visible_in_calendar_fragment"
                                 android:text="@string/visible_in_calendar"
                                 android:checked="@={viewModel.isVisibleInCalendarFragment}"
@@ -85,11 +89,11 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/option_card_view"
+                        android:id="@+id/password_card_view"
                         android:layout_margin="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/visible_card_view"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent">
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -111,11 +115,11 @@
                             <com.google.android.material.textfield.TextInputLayout
                                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                                 android:alpha="@{viewModel.hasPassword ? 1.0F : 0.3F}"
+                                android:enabled="@{viewModel.hasPassword}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/password"
                                 app:endIconMode="password_toggle"
-                                android:enabled="@{viewModel.hasPassword}"
                                 app:boxBackgroundColor="@android:color/transparent"
                                 app:boxBackgroundMode="filled"
                                 app:boxStrokeWidth="0dp"
@@ -138,7 +142,7 @@
                         android:layout_margin="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/option_card_view"
+                        app:layout_constraintTop_toBottomOf="@id/visible_card_view"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent">

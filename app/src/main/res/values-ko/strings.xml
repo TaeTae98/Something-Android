@@ -32,4 +32,12 @@
     <string name="setting">설정</string>
     <string name="require_permission">권한 요청</string>
     <string name="request_permission">구글 정책으로 인한 권한 요청</string>
+    <string name="sun">일</string>
+    <string name="sat">토</string>
+    <string name="mon">월</string>
+    <string name="tue">화</string>
+    <string name="wed">수</string>
+    <string name="thu">목</string>
+    <string name="fri">금</string>
+    <string name="today">오늘</string>
 </resources>
