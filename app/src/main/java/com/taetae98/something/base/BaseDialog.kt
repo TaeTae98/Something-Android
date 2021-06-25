@@ -17,4 +17,8 @@ abstract class BaseDialog : DialogFragment() {
     protected fun setAnimation(@StyleRes resId: Int) {
         dialog?.window?.attributes?.windowAnimations = resId
     }
+
+    protected fun setSoftInputMode(mode: Int) {
+        dialog?.window?.setSoftInputMode(mode)
+    }
 }

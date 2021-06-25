@@ -34,13 +34,9 @@ class CalendarDayDialog : BindingDialog<DialogCalendarDayBinding>(R.layout.dialo
         }
     } }
 
-    override fun onResume() {
-        super.onResume()
-        setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         setAnimation(R.style.Theme_Something_Animation_Popup)
         onCreateToDoList()
     }
