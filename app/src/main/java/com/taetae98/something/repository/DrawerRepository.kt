@@ -10,8 +10,16 @@ import javax.inject.Singleton
 class DrawerRepository @Inject constructor(
     private val drawerDao: DrawerDao
 ) {
+    suspend fun findAll(): List<Drawer> {
+        return drawerDao.findAll()
+    }
+
     suspend fun insert(drawer: Drawer): Long {
         return drawerDao.insert(drawer)
+    }
+
+    suspend fun insert(list: List<Drawer>) {
+        list.forEach { insert(it) }
     }
 
     suspend fun delete(drawer: Drawer) {
@@ -28,9 +36,5 @@ class DrawerRepository @Inject constructor(
 
     fun findAllLiveData(): LiveData<List<Drawer>> {
         return drawerDao.findAllLiveDate()
-    }
-
-    suspend fun findAll(): List<Drawer> {
-        return drawerDao.findAll()
     }
 }

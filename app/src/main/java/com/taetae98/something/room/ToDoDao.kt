@@ -13,6 +13,9 @@ interface ToDoDao : BaseDao<ToDo> {
         private const val ORDER = "ORDER BY isFinished, isOnTop DESC, beginDate, endDate"
     }
 
+    @Query("SELECT * FROM ToDo")
+    suspend fun findAll(): List<ToDo>
+
     @Query("SELECT * FROM ToDo WHERE drawerId=:drawerId $ORDER")
     fun findByDrawerIdLiveData(drawerId: Long): LiveData<List<ToDo>>
 

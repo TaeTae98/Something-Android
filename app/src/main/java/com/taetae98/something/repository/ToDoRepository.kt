@@ -11,8 +11,16 @@ import javax.inject.Singleton
 class ToDoRepository @Inject constructor(
     private val todoDao: ToDoDao
 ) {
+    suspend fun findAll(): List<ToDo> {
+        return todoDao.findAll()
+    }
+
     suspend fun insert(todo: ToDo): Long {
         return todoDao.insert(todo)
+    }
+
+    suspend fun insert(list: List<ToDo>) {
+        list.forEach { insert(it) }
     }
 
     suspend fun delete(todo: ToDo) {
