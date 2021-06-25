@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.viewModels
 import com.taetae98.something.R
 import com.taetae98.something.base.BindingDialog
@@ -18,7 +20,7 @@ class VerifyPasswordDialog(
 
     override fun onResume() {
         super.onResume()
-        setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        onCreateEditText()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -29,9 +31,22 @@ class VerifyPasswordDialog(
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
+        setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+    }
+
     override fun onCreateViewDataBinding() {
         super.onCreateViewDataBinding()
         binding.viewModel = viewModel
+    }
+
+    private fun onCreateEditText() {
+        if (binding.passwordEditText.requestFocus()) {
+            val manager = requireContext().getSystemService(InputMethodManager::class.java)
+            manager.showSoftInput(binding.passwordEditText, 0)
+        }
     }
 
     private fun onCreateOnCancel() {
