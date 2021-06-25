@@ -12,6 +12,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.taetae98.something.R
@@ -80,9 +81,7 @@ class BackupFragment : BindingFragment<FragmentBackupBinding>(R.layout.fragment_
 
     private fun onCreateOnSignOut() {
         binding.setOnSignOut {
-            FirebaseAuth.getInstance().signOut()
-            getGoogleSignInClient().signOut()
-            Toast.makeText(requireContext(), R.string.sign_out, Toast.LENGTH_SHORT).show()
+            onSignOut()
         }
     }
 
@@ -121,5 +120,12 @@ class BackupFragment : BindingFragment<FragmentBackupBinding>(R.layout.fragment_
 
     private fun onRestore() {
         Toast.makeText(requireContext(), R.string.restore, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun onSignOut() {
+        FirebaseAuth.getInstance().signOut()
+        getGoogleSignInClient().signOut()
+
+        Snackbar.make(binding.toolbar, R.string.sign_out, Snackbar.LENGTH_SHORT).show()
     }
 }
