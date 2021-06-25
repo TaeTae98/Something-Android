@@ -14,6 +14,7 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>(R.layout.fragmen
         super.onCreateView(inflater, container, savedInstanceState)
         onCreateSupportActionBar()
         onCreateOnSomething()
+        onCreateOnBackup()
 
         return binding.root
     }
@@ -25,6 +26,12 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>(R.layout.fragmen
     private fun onCreateOnSomething() {
         binding.setOnSomething {
             findNavController().navigate(SettingFragmentDirections.actionSettingFragmentToSomethingSettingFragment())
+        }
+    }
+
+    private fun onCreateOnBackup() {
+        binding.setOnBackup {
+            findNavController().navigate(SettingFragmentDirections.actionSettingFragmentToBackupFragment())
         }
     }
 }

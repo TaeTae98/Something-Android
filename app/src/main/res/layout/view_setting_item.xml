@@ -27,12 +27,12 @@
             tools:text="Title"/>
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:tint="?attr/colorOnElement"
-            android:src="@drawable/ic_right_24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_right_24"
+            android:tint="?attr/colorOnElement"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
     </merge>
 </layout>
