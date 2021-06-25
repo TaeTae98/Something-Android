@@ -39,4 +39,7 @@
     <string name="thu">Thu</string>
     <string name="fri">Fri</string>
     <string name="today">Today</string>
+    <string name="backup">Backup</string>
+    <string name="restore">Restore</string>
+    <string name="sign_out">SignOut</string>
 </resources>

@@ -44,7 +44,7 @@ class ToDoRecyclerView @JvmOverloads constructor(context: Context, attrs: Attrib
                                 todoRepository.delete(viewHolder.element)
                                 withContext(Dispatchers.Main) {
                                     Snackbar.make(this@ToDoRecyclerView, R.string.delete, Snackbar.LENGTH_LONG)
-                                        .setActionTextColor(resources.getColor(R.color.yellow_green, null))
+                                        .setActionTextColor(resources.getColor(R.color.green, null))
                                         .setAction(R.string.cancel) {
                                             CoroutineScope(Dispatchers.IO).launch {
                                                 todoRepository.insert(viewHolder.element)
@@ -55,7 +55,7 @@ class ToDoRecyclerView @JvmOverloads constructor(context: Context, attrs: Attrib
                                 todoRepository.update(viewHolder.element.copy(isFinished = true))
                                 withContext(Dispatchers.Main) {
                                     Snackbar.make(this@ToDoRecyclerView, R.string.finish, Snackbar.LENGTH_LONG)
-                                        .setActionTextColor(resources.getColor(R.color.yellow_green, null))
+                                        .setActionTextColor(resources.getColor(R.color.green, null))
                                         .setAction(R.string.cancel) {
                                             CoroutineScope(Dispatchers.IO).launch {
                                                 todoRepository.insert(viewHolder.element)

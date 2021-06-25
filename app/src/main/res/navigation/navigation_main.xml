@@ -66,6 +66,13 @@
             app:exitAnim="@anim/from_center_to_left"
             app:popEnterAnim="@anim/from_left_to_center"
             app:popExitAnim="@anim/from_center_to_right"/>
+        <action
+            android:id="@+id/action_settingFragment_to_backupFragment"
+            app:destination="@id/backupFragment"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right"/>
     </fragment>
     <dialog
         android:id="@+id/todoBottomMenuDialog"
@@ -191,4 +198,9 @@
             android:name="showFinishedToDo"
             app:argType="boolean" />
     </dialog>
+    <fragment
+        android:id="@+id/backupFragment"
+        android:name="com.taetae98.something.fragment.BackupFragment"
+        android:label="@string/backup"
+        tools:layout="@layout/fragment_backup" />
 </navigation>
