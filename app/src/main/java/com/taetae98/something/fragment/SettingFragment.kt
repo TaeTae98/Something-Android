@@ -14,6 +14,8 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>(R.layout.fragmen
         super.onCreateView(inflater, container, savedInstanceState)
         onCreateSupportActionBar()
         onCreateOnSomething()
+        onCreateOnCalendar()
+        onCreateOnDrawer()
         onCreateOnBackup()
 
         return binding.root
@@ -26,6 +28,18 @@ class SettingFragment : BindingFragment<FragmentSettingBinding>(R.layout.fragmen
     private fun onCreateOnSomething() {
         binding.setOnSomething {
             findNavController().navigate(SettingFragmentDirections.actionSettingFragmentToSomethingSettingFragment())
+        }
+    }
+
+    private fun onCreateOnCalendar() {
+        binding.setOnCalendar {
+            findNavController().navigate(SettingFragmentDirections.actionSettingFragmentToCalendarSettingFragment())
+        }
+    }
+
+    private fun onCreateOnDrawer() {
+        binding.setOnDrawer {
+            findNavController().navigate(SettingFragmentDirections.actionSettingFragmentToDrawerSettingFragment())
         }
     }
 

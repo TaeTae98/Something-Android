@@ -67,8 +67,14 @@ class CalendarDayDialog : BindingDialog<DialogCalendarDayBinding>(R.layout.dialo
     }
 
     private fun onCreateToDoList() {
-        todoRepository.findInCalendarDayDialogLiveData(date).observe(viewLifecycleOwner) {
-            todoAdapter.submitList(it)
+        if (showFinishedToDo) {
+            todoRepository.findInCalendarDayDialogLiveData(date).observe(viewLifecycleOwner) {
+                todoAdapter.submitList(it)
+            }
+        } else {
+            todoRepository.findByNotFinishedInCalendarDayDialogLiveData(date).observe(viewLifecycleOwner) {
+                todoAdapter.submitList(it)
+            }
         }
     }
 }

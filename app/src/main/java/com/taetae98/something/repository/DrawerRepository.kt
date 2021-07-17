@@ -1,8 +1,8 @@
 package com.taetae98.something.repository
 
 import androidx.lifecycle.LiveData
+import com.taetae98.something.dao.DrawerDao
 import com.taetae98.something.dto.Drawer
-import com.taetae98.something.room.DrawerDao
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -10,16 +10,12 @@ import javax.inject.Singleton
 class DrawerRepository @Inject constructor(
     private val drawerDao: DrawerDao
 ) {
-    suspend fun findAll(): List<Drawer> {
-        return drawerDao.findAll()
-    }
-
     suspend fun insert(drawer: Drawer): Long {
         return drawerDao.insert(drawer)
     }
 
-    suspend fun insert(list: List<Drawer>) {
-        list.forEach { insert(it) }
+    suspend fun insert(list: List<Drawer>): LongArray {
+        return drawerDao.insert(list)
     }
 
     suspend fun delete(drawer: Drawer) {
@@ -30,8 +26,8 @@ class DrawerRepository @Inject constructor(
         drawerDao.update(drawer)
     }
 
-    suspend fun update(list: List<Drawer>) {
-        list.forEach { update(it) }
+    suspend fun findAll(): List<Drawer> {
+        return drawerDao.findAll()
     }
 
     fun findAllLiveData(): LiveData<List<Drawer>> {

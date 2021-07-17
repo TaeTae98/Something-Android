@@ -1,4 +1,4 @@
-package com.taetae98.something.room
+package com.taetae98.something.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -19,14 +19,23 @@ interface ToDoDao : BaseDao<ToDo> {
     @Query("SELECT * FROM ToDo WHERE drawerId=:drawerId $ORDER")
     fun findByDrawerIdLiveData(drawerId: Long): LiveData<List<ToDo>>
 
+    @Query("SELECT * FROM ToDo WHERE drawerId=:drawerId AND isFinished = 0 $ORDER")
+    fun findByDrawerIdAndNotFinishedLiveData(drawerId: Long): LiveData<List<ToDo>>
+
     @Query("SELECT * FROM ToDo LEFT OUTER JOIN Drawer ON ToDo.drawerId = Drawer.drawerId WHERE isFinished = 0 AND (isVisibleInToDoFragment = 1 OR isVisibleInToDoFragment IS NULL) $ORDER")
     fun findInToDoFragmentLiveData(): LiveData<List<ToDo>>
 
     @Query("SELECT * FROM ToDo LEFT OUTER JOIN Drawer ON ToDo.drawerId = Drawer.drawerId WHERE beginDate IS NOT NULL AND endDate IS NOT NULL AND (isVisibleInCalendarFragment = 1 OR isVisibleInCalendarFragment IS NULL) ORDER BY beginDate, isFinished, isOnTop DESC, endDate")
     fun findInCalendarFragmentLiveData(): LiveData<List<ToDo>>
 
+    @Query("SELECT * FROM ToDo LEFT OUTER JOIN Drawer ON ToDo.drawerId = Drawer.drawerId WHERE isFinished = 0 AND beginDate IS NOT NULL AND endDate IS NOT NULL AND (isVisibleInCalendarFragment = 1 OR isVisibleInCalendarFragment IS NULL) ORDER BY beginDate, isFinished, isOnTop DESC, endDate")
+    fun findByNotFinishedInCalendarFragmentLiveData(): LiveData<List<ToDo>>
+
     @Query("SELECT * FROM ToDo LEFT OUTER JOIN Drawer ON ToDo.drawerId = Drawer.drawerId WHERE (beginDate <= :date AND :date <= endDate) AND (isVisibleInCalendarFragment = 1 OR isVisibleInCalendarFragment IS NULL) $ORDER")
     fun findInCalendarDayDialogLiveData(date: Date): LiveData<List<ToDo>>
+
+    @Query("SELECT * FROM ToDo LEFT OUTER JOIN Drawer ON ToDo.drawerId = Drawer.drawerId WHERE isFinished = 0 AND (beginDate <= :date AND :date <= endDate) AND (isVisibleInCalendarFragment = 1 OR isVisibleInCalendarFragment IS NULL) $ORDER")
+    fun findByNotFinishedInCalendarDayDialogLiveData(date: Date): LiveData<List<ToDo>>
 
     @Query("SELECT * FROM ToDo WHERE isFinished = 0 AND isNotification = 1")
     fun findIsNotFinishedAndIsNotificationLiveData(): LiveData<List<ToDo>>

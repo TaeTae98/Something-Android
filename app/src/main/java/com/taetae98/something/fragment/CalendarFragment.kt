@@ -7,6 +7,7 @@ import com.taetae98.something.R
 import com.taetae98.something.base.BindingFragment
 import com.taetae98.something.databinding.FragmentCalendarBinding
 import com.taetae98.something.dto.Date
+import com.taetae98.something.repository.SettingRepository
 import com.taetae98.something.repository.ToDoRepository
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -15,6 +16,9 @@ import javax.inject.Inject
 class CalendarFragment : BindingFragment<FragmentCalendarBinding>(R.layout.fragment_calendar) {
     @Inject
     lateinit var todoRepository: ToDoRepository
+
+    @Inject
+    lateinit var settingRepository: SettingRepository
 
     init {
         setHasOptionsMenu(true)
@@ -38,14 +42,20 @@ class CalendarFragment : BindingFragment<FragmentCalendarBinding>(R.layout.fragm
     }
 
     private fun onCreateToDoList() {
-        todoRepository.findInCalendarFragmentLiveData().observe(viewLifecycleOwner) {
-            binding.calendarView.setToDo(it)
+        if (settingRepository.showFinishedToDoInCalendarFragment.value!!) {
+            todoRepository.findInCalendarFragmentLiveData().observe(viewLifecycleOwner) {
+                binding.calendarView.setToDo(it)
+            }
+        } else {
+            todoRepository.findByNotFinishedInCalendarFragmentLiveData().observe(viewLifecycleOwner) {
+                binding.calendarView.setToDo(it)
+            }
         }
     }
 
     private fun onCreateCalendarView() {
         binding.calendarView.onDateClickListener = {
-            findNavController().navigate(CalendarFragmentDirections.actionCalendarFragmentToCalendarDayDialog(it, true))
+            findNavController().navigate(CalendarFragmentDirections.actionCalendarFragmentToCalendarDayDialog(it, settingRepository.showFinishedToDoInCalendarFragment.value!!))
         }
     }
 

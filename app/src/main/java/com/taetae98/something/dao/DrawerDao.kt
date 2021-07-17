@@ -1,4 +1,4 @@
-package com.taetae98.something.room
+package com.taetae98.something.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

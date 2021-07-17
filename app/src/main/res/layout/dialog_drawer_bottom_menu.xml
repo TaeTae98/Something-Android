@@ -14,12 +14,13 @@
     </data>
 
     <LinearLayout
+        style="@style/Theme.Something.Menu"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textview.MaterialTextView
-            style="@style/Theme.Something.Menu"
+            style="@style/Theme.Something.Menu.Title"
             android:onClick="@{onEdit}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,7 +28,7 @@
             android:text="@string/edit" />
 
         <com.google.android.material.textview.MaterialTextView
-            style="@style/Theme.Something.Menu"
+            style="@style/Theme.Something.Menu.Title"
             android:onClick="@{onDelete}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

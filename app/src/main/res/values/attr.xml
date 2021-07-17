@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="colorElement" format="reference|color" />
+    <attr name="colorElementVariant" format="reference|color" />
     <attr name="colorOnElement" format="reference|color" />
     <attr name="colorOnElementVariant" format="reference|color" />
 

@@ -4,17 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View.OnClickListener" />
-
         <variable
-            name="onBackup"
-            type="OnClickListener" />
-        <variable
-            name="onRestore"
-            type="OnClickListener" />
-        <variable
-            name="onSignOut"
-            type="OnClickListener" />
+            name="repository"
+            type="com.taetae98.something.repository.SettingRepository" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -31,40 +23,28 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                tools:title="@string/backup"
+                tools:title="@string/calendar"
                 tools:navigationIcon="?attr/homeAsUpIndicator" />
 
             <LinearLayout
+                style="@style/Theme.Something.Menu"
                 android:dividerPadding="10dp"
                 android:divider="@drawable/divider_horizontal"
                 android:showDividers="middle"
                 android:orientation="vertical"
-                android:background="?attr/colorElement"
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/toolbar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <com.taetae98.something.view.SettingItemView
-                        app:title="@string/backup"
-                        android:onClick="@{onBackup}"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                    <com.taetae98.something.view.SettingItemView
-                        app:title="@string/restore"
-                        android:onClick="@{onRestore}"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
 
-                <com.taetae98.something.view.SettingItemView
-                    app:title="@string/sign_out"
-                    android:onClick="@{onSignOut}"
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    style="@style/Theme.Something.Menu.Title"
+                    android:text="@string/show_finished_todo"
+                    android:checked="@={repository.showFinishedToDoInCalendarFragment}"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>

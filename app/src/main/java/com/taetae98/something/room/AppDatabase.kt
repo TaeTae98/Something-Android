@@ -6,6 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.taetae98.something.DATABASE_NAME
+import com.taetae98.something.dao.DrawerDao
+import com.taetae98.something.dao.ToDoDao
 import com.taetae98.something.dto.Drawer
 import com.taetae98.something.dto.ToDo
 

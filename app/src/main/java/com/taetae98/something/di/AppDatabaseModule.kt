@@ -1,9 +1,9 @@
 package com.taetae98.something.di
 
 import android.content.Context
+import com.taetae98.something.dao.DrawerDao
+import com.taetae98.something.dao.ToDoDao
 import com.taetae98.something.room.AppDatabase
-import com.taetae98.something.room.DrawerDao
-import com.taetae98.something.room.ToDoDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
