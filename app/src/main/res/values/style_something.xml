@@ -5,12 +5,36 @@
         <item name="titleTextColor">?colorControlNormal</item>
     </style>
 
-    <style name="Theme.Something.Menu" parent="Widget.MaterialComponents.TextView">
-        <item name="android:textColor">?attr/colorOnElement</item>
+    <style name="Theme.Something.Menu" parent="Theme.Something">
+        <item name="android:background">?attr/colorElement</item>
+    </style>
+
+    <style name="Theme.Something.Menu.Title" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">?attr/colorOnElementVariant</item>
     </style>
 
     <style name="Theme.Something.Button" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="cornerRadius">0dp</item>
+<!--        <item name="android:backgroundTint">?attr/colorElement</item>-->
+        <item name="android:textColor">?attr/colorOnElementVariant</item>
+    </style>
 
+    <style name="Theme.Something.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">?attr/colorElement</item>
+    </style>
+
+    <style name="Theme.Something.TextInputLayout.FilledBox" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="boxBackgroundColor">?attr/colorElement</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+    </style>
+
+    <style name="Theme.Something.TextInputLayout.FilledBox.DropdownMenu" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu">
+        <item name="boxBackgroundColor">?attr/colorElement</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
     </style>
 
     <style name="Theme.Something.Animation.Popup" parent="Theme.MaterialComponents.Dialog">

@@ -8,7 +8,6 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="?attr/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -26,6 +25,9 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation_view"
+            android:background="?attr/colorElement"
+            app:itemIconTint="@color/bottom_navigation_view_item_color"
+            app:itemTextColor="@color/bottom_navigation_view_item_color"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:menu="@menu/menu_activity_main_bottom_navigation_view"

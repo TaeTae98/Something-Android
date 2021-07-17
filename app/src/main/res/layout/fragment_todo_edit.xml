@@ -68,6 +68,7 @@
                             <com.google.android.material.switchmaterial.SwitchMaterial
                                 android:id="@+id/mark_at_the_top_switch"
                                 android:text="@string/mark_at_the_top"
+                                android:textColor="?attr/colorOnElementVariant"
                                 android:checked="@={viewModel.isOnTop}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -80,6 +81,7 @@
                             <com.google.android.material.switchmaterial.SwitchMaterial
                                 android:id="@+id/show_on_notification_switch"
                                 android:text="@string/show_on_notification"
+                                android:textColor="?attr/colorOnElementVariant"
                                 android:checked="@={viewModel.isNotification}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -108,6 +110,7 @@
                             <com.google.android.material.switchmaterial.SwitchMaterial
                                 android:id="@+id/term_switch"
                                 android:text="@string/term"
+                                android:textColor="?attr/colorOnElementVariant"
                                 android:checked="@={viewModel.hasTerm}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -129,6 +132,7 @@
                                 android:paddingStart="10dp"
                                 android:paddingEnd="10dp"
                                 android:text="@string/begin"
+                                android:textColor="?attr/colorOnElementVariant"
                                 android:textAlignment="center"
                                 app:layout_constraintEnd_toStartOf="@id/end_title_text_view"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -146,6 +150,7 @@
                                 android:paddingStart="10dp"
                                 android:paddingEnd="10dp"
                                 android:text="@string/end"
+                                android:textColor="?attr/colorOnElementVariant"
                                 android:textAlignment="center"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/begin_title_text_view"
@@ -154,6 +159,7 @@
                             <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/begin_text_view"
                                 android:text="@{viewModel.beginDate.toString()}"
+                                android:textColor="?attr/colorOnElementVariant"
                                 android:onClick="@{onSetBeginDate}"
                                 android:clickable="@{viewModel.hasTerm}"
                                 android:alpha="@{viewModel.hasTerm ? 1.0F : 0.3F}"
@@ -166,11 +172,13 @@
                                 app:layout_constraintEnd_toStartOf="@id/end_text_view"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toBottomOf="@id/begin_title_text_view"
-                                tools:text="2000 / 10 / 10" />
+                                tools:text="2000 / 10 / 10"
+                                tools:alpha="0.3F"/>
 
                             <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/end_text_view"
                                 android:text="@{viewModel.endDate.toString()}"
+                                android:textColor="?attr/colorOnElementVariant"
                                 android:onClick="@{onSetEndDate}"
                                 android:clickable="@{viewModel.hasTerm}"
                                 android:alpha="@{viewModel.hasTerm ? 1.0F : 0.3F}"
@@ -183,7 +191,8 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@id/begin_text_view"
                                 app:layout_constraintTop_toBottomOf="@id/end_title_text_view"
-                                tools:text="2000 / 10 / 10" />
+                                tools:text="2000 / 10 / 10"
+                                tools:alpha="0.3F"/>
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </com.google.android.material.card.MaterialCardView>
@@ -203,6 +212,7 @@
                             <com.google.android.material.switchmaterial.SwitchMaterial
                                 android:id="@+id/drawer_switch"
                                 android:text="@string/drawer"
+                                android:textColor="?attr/colorOnElementVariant"
                                 android:checked="@={viewModel.hasDrawer}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -214,16 +224,12 @@
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/drawer_text_input_layout"
-                                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+                                style="@style/Theme.Something.TextInputLayout.FilledBox.DropdownMenu"
                                 android:alpha="@{viewModel.hasDrawer ? 1.0F : 0.3F}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/drawer"
                                 android:enabled="@{viewModel.hasDrawer}"
-                                app:boxBackgroundColor="@android:color/transparent"
-                                app:boxBackgroundMode="filled"
-                                app:boxStrokeWidth="0dp"
-                                app:boxStrokeWidthFocused="0dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -252,14 +258,11 @@
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/title_text_input_layout"
-                                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                                style="@style/Theme.Something.TextInputLayout.FilledBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/title"
                                 app:errorEnabled="@{viewModel.title.empty ? false : false }"
-                                app:boxBackgroundColor="@android:color/transparent"
-                                app:boxStrokeWidth="0dp"
-                                app:boxStrokeWidthFocused="0dp"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
@@ -272,13 +275,10 @@
                             </com.google.android.material.textfield.TextInputLayout>
 
                             <com.google.android.material.textfield.TextInputLayout
-                                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                                style="@style/Theme.Something.TextInputLayout.FilledBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/description"
-                                app:boxBackgroundColor="@android:color/transparent"
-                                app:boxStrokeWidth="0dp"
-                                app:boxStrokeWidthFocused="0dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"

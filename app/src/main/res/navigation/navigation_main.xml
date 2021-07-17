@@ -73,6 +73,20 @@
             app:exitAnim="@anim/from_center_to_left"
             app:popEnterAnim="@anim/from_left_to_center"
             app:popExitAnim="@anim/from_center_to_right"/>
+        <action
+            android:id="@+id/action_settingFragment_to_drawerSettingFragment"
+            app:destination="@id/drawerSettingFragment"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right"/>
+        <action
+            android:id="@+id/action_settingFragment_to_calendarSettingFragment"
+            app:destination="@id/calendarSettingFragment"
+            app:enterAnim="@anim/from_right_to_center"
+            app:exitAnim="@anim/from_center_to_left"
+            app:popEnterAnim="@anim/from_left_to_center"
+            app:popExitAnim="@anim/from_center_to_right"/>
     </fragment>
     <dialog
         android:id="@+id/todoBottomMenuDialog"
@@ -203,4 +217,14 @@
         android:name="com.taetae98.something.fragment.BackupFragment"
         android:label="@string/backup"
         tools:layout="@layout/fragment_backup" />
+    <fragment
+        android:id="@+id/calendarSettingFragment"
+        android:name="com.taetae98.something.fragment.CalendarSettingFragment"
+        android:label="@string/calendar"
+        tools:layout="@layout/fragment_calendar_setting"/>
+    <fragment
+        android:id="@+id/drawerSettingFragment"
+        android:name="com.taetae98.something.fragment.DrawerSettingFragment"
+        android:label="@string/drawer"
+        tools:layout="@layout/fragment_drawer_setting"/>
 </navigation>

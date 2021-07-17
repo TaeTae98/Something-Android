@@ -21,6 +21,7 @@
             tools:title="@string/calendar" />
         <com.taetae98.something.view.ToDoCalendarView
             android:id="@+id/calendar_view"
+            app:cardBackgroundColor="?attr/colorElement"
             android:layout_margin="10dp"
             android:layout_width="0dp"
             android:layout_height="0dp"

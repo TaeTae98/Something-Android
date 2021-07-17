@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -62,6 +63,7 @@
                                 android:enabled="@{!viewModel.hasPassword}"
                                 android:id="@+id/is_visible_in_todo_fragment"
                                 android:text="@string/visible_in_todo"
+                                android:textColor="?attr/colorOnElementVariant"
                                 android:checked="@={viewModel.isVisibleInToDoFragment}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -76,6 +78,7 @@
                                 android:enabled="@{!viewModel.hasPassword}"
                                 android:id="@+id/is_visible_in_calendar_fragment"
                                 android:text="@string/visible_in_calendar"
+                                android:textColor="?attr/colorOnElementVariant"
                                 android:checked="@={viewModel.isVisibleInCalendarFragment}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -103,6 +106,7 @@
                             <com.google.android.material.switchmaterial.SwitchMaterial
                                 android:id="@+id/drawer_switch"
                                 android:text="@string/password"
+                                android:textColor="?attr/colorOnElementVariant"
                                 android:checked="@={viewModel.hasPassword}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -113,17 +117,13 @@
                                 app:layout_constraintEnd_toEndOf="parent" />
 
                             <com.google.android.material.textfield.TextInputLayout
-                                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                                style="@style/Theme.Something.TextInputLayout.FilledBox"
                                 android:alpha="@{viewModel.hasPassword ? 1.0F : 0.3F}"
                                 android:enabled="@{viewModel.hasPassword}"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/password"
                                 app:endIconMode="password_toggle"
-                                app:boxBackgroundColor="@android:color/transparent"
-                                app:boxBackgroundMode="filled"
-                                app:boxStrokeWidth="0dp"
-                                app:boxStrokeWidthFocused="0dp"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -147,16 +147,13 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent">
                         <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Theme.Something.TextInputLayout.FilledBox"
                             android:id="@+id/name_text_input_layout"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                             android:hint="@string/name"
                             android:layout_marginBottom="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:errorEnabled="@{viewModel.name.empty ? false : false }"
-                            app:boxBackgroundColor="@android:color/transparent"
-                            app:boxStrokeWidth="0dp"
-                            app:boxStrokeWidthFocused="0dp">
+                            app:errorEnabled="@{viewModel.name.empty ? false : false }">
                             <com.google.android.material.textfield.TextInputEditText
                                 style="@style/Theme.Something.Drawer.Name"
                                 android:text="@={viewModel.name}"

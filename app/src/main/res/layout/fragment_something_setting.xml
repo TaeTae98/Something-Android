@@ -23,7 +23,7 @@
             tools:title="@string/app_name"
             tools:navigationIcon="?attr/homeAsUpIndicator" />
         <LinearLayout
-            android:background="?attr/colorOnPrimary"
+            style="@style/Theme.Something.Menu"
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,6 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent">
             <com.google.android.material.switchmaterial.SwitchMaterial
                 android:text="@string/run_on_unlock"
+                android:textColor="?attr/colorOnElementVariant"
                 android:checked="@={repository.isSticky}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

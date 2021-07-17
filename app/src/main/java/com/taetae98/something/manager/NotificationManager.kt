@@ -28,6 +28,8 @@ class NotificationManager @Inject constructor(
 
         private const val TODO_CHANNEL_ID = "Something ToDo"
         private const val TODO_CHANNEL_NAME = "Something ToDo"
+
+        private const val TODO_GROUP_KEY = "com.taetae98.ToDo.Notification.ToDo.GROUP_KEY"
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -47,38 +49,49 @@ class NotificationManager @Inject constructor(
             .setDestination(R.id.todoFragment)
             .createPendingIntent()
 
-        return NotificationCompat.Builder(context, STICKY_CHANNEL_ID).apply {
-            setSmallIcon(R.drawable.ic_todo_24)
-            setShowWhen(false)
-            setContentTitle(context.getString(R.string.run_on_unlock))
-            setContentIntent(contentIntent)
-        }.build()
+        return NotificationCompat.Builder(context, STICKY_CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_todo_24)
+            .setShowWhen(false)
+            .setContentTitle(context.getString(R.string.run_on_unlock))
+            .setContentIntent(contentIntent)
+            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setVisibility(NotificationCompat.VISIBILITY_SECRET)
+            .build()
     }
 
-    fun notify(todo: List<ToDo>) {
+    fun notify(list: List<ToDo>) {
         manager.cancelAll()
-        todo.forEach {
-            notify(it)
-        }
-    }
-
-    fun notify(todo: ToDo) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createNotificationChannel(TODO_CHANNEL_ID, TODO_CHANNEL_NAME, NotificationManager.IMPORTANCE_MIN)
+            createNotificationChannel(TODO_CHANNEL_ID, TODO_CHANNEL_NAME, NotificationManager.IMPORTANCE_LOW)
         }
 
-        val notification = NotificationCompat.Builder(context, TODO_CHANNEL_ID).apply {
-            setSmallIcon(R.drawable.ic_todo_24)
-            setContentTitle(todo.title)
-            setShowWhen(false)
-            setOngoing(true)
-            setGroup(TODO_CHANNEL_ID)
-            setStyle(NotificationCompat.BigTextStyle()
-                .setBigContentTitle(todo.title)
-                .bigText("${todo.term?.toString() ?: ""}${if (todo.term == null) "" else "\n"}${todo.description}")
-            )
-        }.build()
+        list.forEach {
+            val notification = NotificationCompat.Builder(context, TODO_CHANNEL_ID).apply {
+                setSmallIcon(R.drawable.ic_todo_24)
+                setContentTitle(it.title)
+                setContentText(it.description)
+                setSubText(it.term?.toString() ?: "")
+                setShowWhen(false)
+                setOngoing(true)
+                setGroup(TODO_GROUP_KEY)
+                setStyle(
+                    NotificationCompat.BigTextStyle()
+                )
+            }.build()
 
-        manager.notify(todo.id.toInt(), notification)
+            manager.notify(it.id.toInt(), notification)
+        }
+
+        if (list.size >= 2) {
+            val summary = NotificationCompat.Builder(context, TODO_CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_todo_24)
+                .setShowWhen(false)
+                .setOngoing(true)
+                .setGroup(TODO_GROUP_KEY)
+                .setGroupSummary(true)
+                .build()
+
+            manager.notify(0, summary)
+        }
     }
 }

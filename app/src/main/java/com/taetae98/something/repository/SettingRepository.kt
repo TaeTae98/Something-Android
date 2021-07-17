@@ -22,6 +22,8 @@ class SettingRepository @Inject constructor(
 ) {
     companion object {
         private val isStickyKey by lazy { booleanPreferencesKey("isSticky") }
+        private val showFinishedToDoInCalendarFragmentKey by lazy { booleanPreferencesKey("showFinishedToDoInCalendarFragment") }
+        private val showFinishedToDoInDrawerFragmentKey by lazy { booleanPreferencesKey("showFinishedToDoInDrawerFragment") }
     }
 
     val isSticky = MutableLiveData(
@@ -35,6 +37,38 @@ class SettingRepository @Inject constructor(
             CoroutineScope(Dispatchers.IO).launch {
                 settingDataStore.edit {
                     it[isStickyKey] = boolean
+                }
+            }
+        }
+    }
+
+    val showFinishedToDoInCalendarFragment = MutableLiveData(
+        runBlocking(Dispatchers.IO) {
+            settingDataStore.data.map {
+                it[showFinishedToDoInCalendarFragmentKey] ?: true
+            }.first()
+        }
+    ).apply {
+        observeForever { boolean ->
+            CoroutineScope(Dispatchers.IO).launch {
+                settingDataStore.edit {
+                    it[showFinishedToDoInCalendarFragmentKey] = boolean
+                }
+            }
+        }
+    }
+
+    val showFinishedToDoInDrawerFragment = MutableLiveData(
+        runBlocking(Dispatchers.IO) {
+            settingDataStore.data.map {
+                it[showFinishedToDoInDrawerFragmentKey] ?: true
+            }.first()
+        }
+    ).apply {
+        observeForever { boolean ->
+            CoroutineScope(Dispatchers.IO).launch {
+                settingDataStore.edit {
+                    it[showFinishedToDoInDrawerFragmentKey] = boolean
                 }
             }
         }

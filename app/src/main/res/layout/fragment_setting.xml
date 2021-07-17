@@ -11,6 +11,14 @@
             type="OnClickListener" />
 
         <variable
+            name="onCalendar"
+            type="OnClickListener" />
+
+        <variable
+            name="onDrawer"
+            type="OnClickListener" />
+
+        <variable
             name="onBackup"
             type="OnClickListener" />
     </data>
@@ -38,16 +46,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
             <LinearLayout
+                style="@style/Theme.Something.Menu"
                 android:showDividers="middle"
                 android:dividerPadding="10dp"
-                android:divider="@drawable/divider_grey_horizontal"
-                android:background="?colorOnPrimary"
+                android:divider="@drawable/divider_horizontal"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <com.taetae98.something.view.SettingItemView
                     app:title="@string/app_name"
                     android:onClick="@{onSomething}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <com.taetae98.something.view.SettingItemView
+                    app:title="@string/calendar"
+                    android:onClick="@{onCalendar}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <com.taetae98.something.view.SettingItemView
+                    app:title="@string/drawer"
+                    android:onClick="@{onDrawer}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <com.taetae98.something.view.SettingItemView

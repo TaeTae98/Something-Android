@@ -9,6 +9,7 @@ import com.taetae98.something.adapter.ToDoAdapter
 import com.taetae98.something.base.BindingFragment
 import com.taetae98.something.databinding.FragmentDrawerTodoBinding
 import com.taetae98.something.dto.ToDo
+import com.taetae98.something.repository.SettingRepository
 import com.taetae98.something.repository.ToDoRepository
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -17,6 +18,9 @@ import javax.inject.Inject
 class DrawerToDoFragment : BindingFragment<FragmentDrawerTodoBinding>(R.layout.fragment_drawer_todo) {
     @Inject
     lateinit var todoRepository: ToDoRepository
+
+    @Inject
+    lateinit var settingRepository: SettingRepository
 
     private val args by navArgs<DrawerToDoFragmentArgs>()
     private val drawer by lazy { args.drawer }
@@ -72,8 +76,14 @@ class DrawerToDoFragment : BindingFragment<FragmentDrawerTodoBinding>(R.layout.f
     }
 
     private fun onCreateToDoList() {
-        todoRepository.findByDrawerIdLiveData(drawer.id).observe(viewLifecycleOwner) {
-            todoAdapter.submitList(it)
+        if (settingRepository.showFinishedToDoInDrawerFragment.value!!) {
+            todoRepository.findByDrawerIdLiveData(drawer.id).observe(viewLifecycleOwner) {
+                todoAdapter.submitList(it)
+            }
+        } else {
+            todoRepository.findByDrawerIdAndNotFinishedLiveData(drawer.id).observe(viewLifecycleOwner) {
+                todoAdapter.submitList(it)
+            }
         }
     }
 

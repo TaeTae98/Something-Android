@@ -40,4 +40,8 @@
     <string name="thu">목</string>
     <string name="fri">금</string>
     <string name="today">오늘</string>
+    <string name="backup">백업</string>
+    <string name="restore">복원</string>
+    <string name="sign_out">로그아웃</string>
+    <string name="show_finished_todo">완료된 ToDo 보이기</string>
 </resources>
