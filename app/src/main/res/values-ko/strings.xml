@@ -44,4 +44,6 @@
     <string name="restore">복원</string>
     <string name="sign_out">로그아웃</string>
     <string name="show_finished_todo">완료된 ToDo 보이기</string>
+    <string name="data_on_the_device_will_be_deleted">장치의 데이터가 삭제됩니다.</string>
+    <string name="data_on_the_server_will_be_deleted">서버의 데이터가 삭제됩니다.</string>
 </resources>

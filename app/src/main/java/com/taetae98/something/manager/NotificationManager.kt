@@ -23,10 +23,19 @@ class NotificationManager @Inject constructor(
     private val manager by lazy { NotificationManagerCompat.from(context) }
 
     companion object {
-        private const val STICKY_CHANNEL_ID = "Something Sticky"
+        const val STICKY_NOTIFICATION_ID = 1
+        const val BACKUP_IN_PROGRESS_NOTIFICATION_ID = 2
+        const val BACKUP_FINISH_NOTIFICATION_ID = 3
+        const val RESTORE_IN_PROGRESS_NOTIFICATION_ID = 4
+        const val RESTORE_FINISH_NOTIFICATION_ID = 5
+
+        private const val STICKY_CHANNEL_ID = "com.taetae98.something.sticky.channel"
         private const val STICKY_CHANNEL_NAME = "Something Sticky"
 
-        private const val TODO_CHANNEL_ID = "Something ToDo"
+        private const val BACKUP_CHANNEL_ID = "com.taetae98.something.backup"
+        private const val BACKUP_CHANNEL_NAME = "Something Backup"
+
+        private const val TODO_CHANNEL_ID = "com.taetae98.something.todo"
         private const val TODO_CHANNEL_NAME = "Something ToDo"
 
         private const val TODO_GROUP_KEY = "com.taetae98.ToDo.Notification.ToDo.GROUP_KEY"
@@ -59,6 +68,35 @@ class NotificationManager @Inject constructor(
             .build()
     }
 
+    fun createBackupNotification(isInProgress: Boolean = true): Notification {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createNotificationChannel(BACKUP_CHANNEL_ID, BACKUP_CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH)
+        }
+
+        return NotificationCompat.Builder(context, BACKUP_CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_backup_24)
+            .setContentTitle(context.getString(R.string.backup))
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setOngoing(isInProgress)
+            .setProgress(1, 1, isInProgress)
+            .build()
+    }
+
+    fun createRestoreNotification(isInProgress: Boolean = true): Notification {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createNotificationChannel(BACKUP_CHANNEL_ID, BACKUP_CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH)
+        }
+
+        return NotificationCompat.Builder(context, BACKUP_CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_restore_24)
+            .setContentTitle(context.getString(R.string.restore))
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setOngoing(isInProgress)
+            .setProgress(1, 1, isInProgress)
+            .build()
+    }
+
+
     fun notify(list: List<ToDo>) {
         manager.cancelAll()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -79,7 +117,7 @@ class NotificationManager @Inject constructor(
                 )
             }.build()
 
-            manager.notify(it.id.toInt(), notification)
+            manager.notify(it.id.toInt() + 100, notification)
         }
 
         if (list.size >= 2) {
@@ -93,5 +131,9 @@ class NotificationManager @Inject constructor(
 
             manager.notify(0, summary)
         }
+    }
+
+    fun notify(id: Int, notification: Notification) {
+        manager.notify(id, notification)
     }
 }

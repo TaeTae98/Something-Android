@@ -1,6 +1,6 @@
 package com.taetae98.something.fragment
 
-import android.content.Intent
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,28 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.GenericTypeIndicator
+import com.google.firebase.FirebaseNetworkException
 import com.taetae98.something.R
 import com.taetae98.something.TAG
+import com.taetae98.something.api.BackupAPI
 import com.taetae98.something.base.BindingFragment
 import com.taetae98.something.databinding.FragmentBackupBinding
-import com.taetae98.something.dto.Drawer
-import com.taetae98.something.dto.ToDo
 import com.taetae98.something.repository.DrawerRepository
 import com.taetae98.something.repository.ToDoRepository
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -39,29 +30,69 @@ class BackupFragment : BindingFragment<FragmentBackupBinding>(R.layout.fragment_
     lateinit var todoRepository: ToDoRepository
     @Inject
     lateinit var drawerRepository: DrawerRepository
+    @Inject
+    lateinit var backupAPI: BackupAPI
 
     private val onBackupResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        try {
-            onSignInWithFirebase(it.data) {
-                onBackup()
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                backupAPI.onSignInWithFirebase(it.data)
+                backupAPI.onBackup()
+            } catch (e: FirebaseNetworkException) {
+                Log.e(TAG, "onBackupResult Error", e)
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), R.string.connect_to_the_internet, Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: ApiException) {
+                Log.e(TAG, "onBackupResult Error", e)
+                withContext(Dispatchers.Main) {
+                    when (e.statusCode) {
+                        7 -> {
+                            Toast.makeText(requireContext(), R.string.connect_to_the_internet, Toast.LENGTH_SHORT).show()
+                        }
+                        else -> {
+                            Toast.makeText(requireContext(), R.string.google_error, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "onBackupResult Error", e)
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), R.string.error, Toast.LENGTH_SHORT).show()
+                }
             }
-        } catch (e: Exception) {
-            Log.e(TAG, "Google SignIn Fail", e)
-        }
-    }
-    private val onRestoreResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        try {
-            onSignInWithFirebase(it.data) {
-                onRestore()
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, "Google SignIn Fail", e)
         }
     }
 
-    companion object {
-        private const val BACKUP = 1 shl 0
-        private const val RESTORE = 1 shl 1
+    private val onRestoreResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                backupAPI.onSignInWithFirebase(it.data)
+                backupAPI.onRestore()
+            } catch (e: FirebaseNetworkException) {
+                Log.e(TAG, "onBackupResult Error", e)
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), R.string.connect_to_the_internet, Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: ApiException) {
+                Log.e(TAG, "onBackupResult Error", e)
+                withContext(Dispatchers.Main) {
+                    when (e.statusCode) {
+                        7 -> {
+                            Toast.makeText(requireContext(), R.string.connect_to_the_internet, Toast.LENGTH_SHORT).show()
+                        }
+                        else -> {
+                            Toast.makeText(requireContext(), R.string.google_error, Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "onBackupResult Error", e)
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), R.string.error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -80,98 +111,50 @@ class BackupFragment : BindingFragment<FragmentBackupBinding>(R.layout.fragment_
 
     private fun onCreateOnBackup() {
         binding.setOnBackup {
-            onBackup()
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.backup)
+                .setMessage(R.string.data_on_the_server_will_be_deleted)
+                .setNegativeButton(R.string.cancel) { _, _->
+
+                }
+                .setPositiveButton(R.string.ok) { _, _ ->
+                    if (backupAPI.isAccountValid()) {
+                        backupAPI.onBackup()
+                    } else {
+                        onBackupResult.launch(backupAPI.getGoogleSignInClient().signInIntent)
+                    }
+                }
+                .show()
         }
     }
 
     private fun onCreateOnRestore() {
         binding.setOnRestore {
-            onRestore()
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.restore)
+                .setMessage(R.string.data_on_the_device_will_be_deleted)
+                .setNegativeButton(R.string.cancel) { _, _->
+
+                }
+                .setPositiveButton(R.string.ok) { _, _ ->
+                    if (backupAPI.isAccountValid()) {
+                        backupAPI.onRestore()
+                    } else {
+                        onRestoreResult.launch(backupAPI.getGoogleSignInClient().signInIntent)
+                    }
+                }
+                .show()
         }
     }
 
     private fun onCreateOnSignOut() {
         binding.setOnSignOut {
-            onSignOut()
-        }
-    }
-
-    private fun onSignInWithGoogle(action: Int) {
-        val signInIntent = getGoogleSignInClient().signInIntent
-
-        when (action) {
-            BACKUP -> {
-                onBackupResult.launch(signInIntent)
-            }
-            RESTORE -> {
-                onRestoreResult.launch(signInIntent)
+            CoroutineScope(Dispatchers.IO).launch {
+                backupAPI.onSignOut()
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), R.string.sign_out_success, Toast.LENGTH_SHORT).show()
+                }
             }
         }
-    }
-
-    private fun onSignInWithFirebase(data: Intent?, onComplete:(()->Unit)? = null) {
-        val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-        val account = task.getResult(ApiException::class.java)!!
-
-        FirebaseAuth.getInstance().signInWithCredential(GoogleAuthProvider.getCredential(account.idToken!!, null)).addOnCompleteListener {
-            onComplete?.invoke()
-        }
-    }
-
-    private fun getGoogleSignInClient(): GoogleSignInClient {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        return GoogleSignIn.getClient(requireContext(), gso)
-    }
-
-    private fun onBackup() {
-        val id = FirebaseAuth.getInstance().currentUser?.uid
-        if (id == null) {
-            onSignInWithGoogle(BACKUP)
-            return
-        }
-
-        CoroutineScope(Dispatchers.IO).launch {
-            FirebaseDatabase.getInstance().getReference(id).child("todo").setValue(todoRepository.findAll())
-            FirebaseDatabase.getInstance().getReference(id).child("drawer").setValue(drawerRepository.findAll())
-
-            withContext(Dispatchers.Main) {
-                Toast.makeText(requireContext(), R.string.backup, Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private fun onRestore() {
-        val id = FirebaseAuth.getInstance().currentUser?.uid
-        if (id == null) {
-            onSignInWithGoogle(RESTORE)
-            return
-        }
-
-        CoroutineScope(Dispatchers.IO).launch {
-            val drawerJob = FirebaseDatabase.getInstance().getReference(id).child("drawer").get().await()
-            drawerJob.getValue(object : GenericTypeIndicator<List<Drawer>>() {})?.let {
-                drawerRepository.insert(it)
-            }
-
-            val todoJob = FirebaseDatabase.getInstance().getReference(id).child("todo").get().await()
-            todoJob.getValue(object : GenericTypeIndicator<List<ToDo>>() {})?.let {
-                todoRepository.insert(it)
-            }
-
-            withContext(Dispatchers.Main) {
-                Toast.makeText(requireContext(), R.string.restore, Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private fun onSignOut() {
-        FirebaseAuth.getInstance().signOut()
-        getGoogleSignInClient().signOut()
-
-        Snackbar.make(binding.toolbar, R.string.sign_out, Snackbar.LENGTH_SHORT).show()
     }
 }

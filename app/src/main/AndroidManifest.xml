@@ -14,6 +14,15 @@
         android:roundIcon="@drawable/icon_something_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Something">
+        <service
+            android:name=".service.RestoreService"
+            android:enabled="true"
+            android:exported="true"></service>
+        <service
+            android:name=".service.BackupService"
+            android:enabled="true"
+            android:exported="true" />
+
         <receiver
             android:name=".receiver.RebootReceiver"
             android:enabled="true"
@@ -25,16 +34,12 @@
         <receiver
             android:name=".receiver.StickyReceiver"
             android:enabled="true"
-            android:exported="true">
-
-        </receiver>
+            android:exported="true" />
 
         <service
             android:name=".service.StickyService"
             android:enabled="true"
-            android:exported="true">
-
-        </service>
+            android:exported="true" />
 
         <activity
             android:name=".activity.DrawerEditActivity"

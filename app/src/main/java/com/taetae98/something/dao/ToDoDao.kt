@@ -42,4 +42,7 @@ interface ToDoDao : BaseDao<ToDo> {
 
     @Query("SELECT * FROM ToDo WHERE isFinished = 1 $ORDER")
     fun findIsFinishedLiveData(): LiveData<List<ToDo>>
+
+    @Query("DELETE FROM ToDo")
+    suspend fun deleteAll()
 }
