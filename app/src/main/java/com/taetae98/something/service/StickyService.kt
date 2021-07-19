@@ -16,16 +16,12 @@ class StickyService : Service() {
 
     private val stickyReceiver = StickyReceiver()
 
-    companion object {
-        private const val NOTIFICATION_FOREGROUND_ID = 1000
-    }
-
     override fun onBind(intent: Intent): IBinder? {
         return null
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        startForeground(NOTIFICATION_FOREGROUND_ID, notificationManager.createStickyNotification())
+        startForeground(NotificationManager.STICKY_NOTIFICATION_ID, notificationManager.createStickyNotification())
         registerReceiver(stickyReceiver, IntentFilter(Intent.ACTION_SCREEN_OFF))
         return super.onStartCommand(intent, flags, startId)
     }

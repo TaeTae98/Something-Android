@@ -66,4 +66,8 @@ class ToDoRepository @Inject constructor(
     fun findIsFinishedLiveData(): LiveData<List<ToDo>> {
         return todoDao.findIsFinishedLiveData()
     }
+
+    suspend fun deleteAll() {
+        todoDao.deleteAll()
+    }
 }
