@@ -63,8 +63,8 @@ class ToDoRepository @Inject constructor(
         return todoDao.findIsNotFinishedAndIsNotificationLiveData()
     }
 
-    fun findIsFinishedLiveData(): LiveData<List<ToDo>> {
-        return todoDao.findIsFinishedLiveData()
+    fun findInFinishedFragmentLiveData(): LiveData<List<ToDo>> {
+        return todoDao.findInFinishedFragmentLiveData()
     }
 
     suspend fun deleteAll() {

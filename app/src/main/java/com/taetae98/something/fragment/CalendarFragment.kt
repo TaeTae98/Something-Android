@@ -60,17 +60,22 @@ class CalendarFragment : BindingFragment<FragmentCalendarBinding>(R.layout.fragm
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_calendar_fragment, menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             R.id.today -> {
                 binding.calendarView.setDate(Date())
+                true
+            }
+            R.id.setting -> {
+                findNavController().navigate(CalendarFragmentDirections.actionCalendarFragmentToCalendarSettingFragment())
+                true
+            }
+            else -> {
+                false
             }
         }
-
-        return super.onOptionsItemSelected(item)
     }
 }

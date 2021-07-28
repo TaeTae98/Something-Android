@@ -13,6 +13,7 @@ import com.taetae98.something.repository.SettingRepository
 import com.taetae98.something.repository.ToDoRepository
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import kotlin.properties.Delegates
 
 @AndroidEntryPoint
 class DrawerToDoFragment : BindingFragment<FragmentDrawerTodoBinding>(R.layout.fragment_drawer_todo) {
@@ -24,6 +25,20 @@ class DrawerToDoFragment : BindingFragment<FragmentDrawerTodoBinding>(R.layout.f
 
     private val args by navArgs<DrawerToDoFragmentArgs>()
     private val drawer by lazy { args.drawer }
+    private var finishedToDoVisible by Delegates.observable(false) { _, _, _ ->
+        submitList()
+    }
+    private var todoList by Delegates.observable(emptyList<ToDo>()) { _, _, _ ->
+        submitList()
+    }
+
+    private fun submitList() {
+        todoAdapter.submitList(if (finishedToDoVisible) {
+            todoList
+        } else {
+            todoList.filter { !it.isFinished }
+        })
+    }
 
     private val todoAdapter by lazy {
         ToDoAdapter().apply {
@@ -78,24 +93,30 @@ class DrawerToDoFragment : BindingFragment<FragmentDrawerTodoBinding>(R.layout.f
     private fun onCreateToDoList() {
         if (settingRepository.showFinishedToDoInDrawerFragment.value!!) {
             todoRepository.findByDrawerIdLiveData(drawer.id).observe(viewLifecycleOwner) {
-                todoAdapter.submitList(it)
+                todoList = it
             }
         } else {
             todoRepository.findByDrawerIdAndNotFinishedLiveData(drawer.id).observe(viewLifecycleOwner) {
-                todoAdapter.submitList(it)
+                todoList = it
             }
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_drawer_todo_fragment, menu)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.show_finished_todo).isChecked = finishedToDoVisible
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.edit -> {
                 findNavController().navigate(DrawerToDoFragmentDirections.actionDrawerToDoFragmentToDrawerEditActivity(drawer))
+            }
+            R.id.show_finished_todo -> {
+                finishedToDoVisible = !finishedToDoVisible
             }
         }
 
