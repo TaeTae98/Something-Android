@@ -63,11 +63,11 @@
                     android:onClick="@{onCalendar}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <com.taetae98.something.view.SettingItemView
-                    app:title="@string/drawer"
-                    android:onClick="@{onDrawer}"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+<!--                <com.taetae98.something.view.SettingItemView-->
+<!--                    app:title="@string/drawer"-->
+<!--                    android:onClick="@{onDrawer}"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content" />-->
                 <com.taetae98.something.view.SettingItemView
                     app:title="@string/backup"
                     android:onClick="@{onBackup}"

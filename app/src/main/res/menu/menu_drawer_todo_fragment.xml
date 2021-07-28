@@ -7,4 +7,11 @@
         android:icon="@drawable/ic_edit_24"
         android:title="@string/edit"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/show_finished_todo"
+        android:checkable="true"
+        android:checked="false"
+        android:title="@string/show_finished_todo"
+        app:showAsAction="never" />
+
 </menu>

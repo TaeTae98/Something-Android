@@ -30,6 +30,10 @@ class DrawerRepository @Inject constructor(
         return drawerDao.findAll()
     }
 
+    suspend fun findDrawerIdIsVisibleInCalendarFragment(): List<Drawer> {
+        return drawerDao.findDrawerIdIsVisibleInCalendarFragment()
+    }
+
     fun findAllLiveData(): LiveData<List<Drawer>> {
         return drawerDao.findAllLiveDate()
     }

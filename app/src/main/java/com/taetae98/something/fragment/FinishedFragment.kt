@@ -51,7 +51,7 @@ class FinishedFragment : BindingFragment<FragmentFinishedBinding>(R.layout.fragm
     }
 
     private fun onCreateToDoList() {
-        todoRepository.findIsFinishedLiveData().observe(viewLifecycleOwner) {
+        todoRepository.findInFinishedFragmentLiveData().observe(viewLifecycleOwner) {
             todoAdapter.submitList(it)
         }
     }

@@ -14,6 +14,9 @@ interface DrawerDao : BaseDao<Drawer> {
     @Query("SELECT * FROM Drawer")
     fun findAllLiveDate(): LiveData<List<Drawer>>
 
+    @Query("SELECT * FROM Drawer WHERE isVisibleInCalendarFragment = 1")
+    suspend fun findDrawerIdIsVisibleInCalendarFragment(): List<Drawer>
+
     @Query("DELETE FROM Drawer")
     suspend fun deleteAll()
 }
