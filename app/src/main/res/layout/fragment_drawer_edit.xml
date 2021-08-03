@@ -59,8 +59,6 @@
                             android:layout_height="wrap_content">
 
                             <com.google.android.material.switchmaterial.SwitchMaterial
-                                android:alpha="@{!viewModel.hasPassword ? 1.0F : 0.3F}"
-                                android:enabled="@{!viewModel.hasPassword}"
                                 android:id="@+id/is_visible_in_todo_fragment"
                                 android:text="@string/visible_in_todo"
                                 android:textColor="?attr/colorOnElementVariant"
@@ -74,8 +72,6 @@
                                 app:layout_constraintEnd_toEndOf="parent" />
 
                             <com.google.android.material.switchmaterial.SwitchMaterial
-                                android:alpha="@{!viewModel.hasPassword ? 1.0F : 0.3F}"
-                                android:enabled="@{!viewModel.hasPassword}"
                                 android:id="@+id/is_visible_in_calendar_fragment"
                                 android:text="@string/visible_in_calendar"
                                 android:textColor="?attr/colorOnElementVariant"

@@ -10,34 +10,23 @@ import javax.inject.Inject
 class DrawerEditViewModel @Inject constructor(
     stateHandle: SavedStateHandle
 ): ViewModel() {
-    companion object {
-        private const val ID = "ID"
-        private const val NAME = "NAME"
-        private const val PASSWORD = "PASSWORD"
-        private const val ORDINAL = "ORDINAL"
-        private const val IS_VISIBLE_IN_TODO_FRAGMENT = "IS_VISIBLE_IN_TODO_FRAGMENT"
-        private const val IS_VISIBLE_IN_CALENDAR_FRAGMENT = "IS_VISIBLE_IN_CALENDAR_FRAGMENT"
+    val id = stateHandle.getLiveData("ID", 0L)
+    val name = stateHandle.getLiveData("NAME", "")
+    val password = stateHandle.getLiveData<String>("PASSWORD", null)
+    val ordinal = stateHandle.getLiveData("ORDINAL", 0L)
+    val isVisibleInToDoFragment = stateHandle.getLiveData("IS_VISIBLE_IN_TODO_FRAGMENT", true)
+    val isVisibleInCalendarFragment = stateHandle.getLiveData("IS_VISIBLE_IN_CALENDAR_FRAGMENT", true)
 
-        private const val HAS_PASSWORD = "HAS_PASSWORD"
-    }
+    val hasPassword = stateHandle.getLiveData("HAS_PASSWORD", false)
 
-    val id = stateHandle.getLiveData(ID, 0L)
-    val name = stateHandle.getLiveData(NAME, "")
-    val password = stateHandle.getLiveData<String>(PASSWORD, null)
-    val ordinal = stateHandle.getLiveData(ORDINAL, 0L)
-    val isVisibleInToDoFragment = stateHandle.getLiveData(IS_VISIBLE_IN_TODO_FRAGMENT, true)
-    val isVisibleInCalendarFragment = stateHandle.getLiveData(IS_VISIBLE_IN_CALENDAR_FRAGMENT, true)
-
-    val hasPassword = stateHandle.getLiveData(HAS_PASSWORD, false)
-
-    init {
-        hasPassword.observeForever {
-            if (it) {
-                isVisibleInToDoFragment.value = false
-                isVisibleInCalendarFragment.value = false
-            }
-        }
-    }
+//    init {
+//        hasPassword.observeForever {
+//            if (it) {
+//                isVisibleInToDoFragment.value = false
+//                isVisibleInCalendarFragment.value = false
+//            }
+//        }
+//    }
 
     fun update(drawer: Drawer) {
         id.value = drawer.id
