@@ -36,6 +36,21 @@ class ToDoRecyclerView @JvmOverloads constructor(context: Context, attrs: Attrib
                 return false
             }
 
+            override fun getSwipeDirs(recyclerView: RecyclerView, viewHolder: ViewHolder): Int {
+                return when (viewHolder) {
+                    is ToDoAdapter.ToDoHolder -> {
+                        if (viewHolder.element.isFinished) {
+                            ItemTouchHelper.ACTION_STATE_IDLE
+                        } else {
+                            super.getSwipeDirs(recyclerView, viewHolder)
+                        }
+                    }
+                    else -> {
+                        super.getSwipeDirs(recyclerView, viewHolder)
+                    }
+                }
+            }
+
             override fun onSwiped(viewHolder: ViewHolder, direction: Int) {
                 when (viewHolder) {
                     is ToDoAdapter.ToDoHolder -> {

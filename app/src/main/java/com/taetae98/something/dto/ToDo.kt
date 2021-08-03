@@ -50,6 +50,10 @@ data class ToDo(
     var isNotification: Boolean = false,
     @ColumnInfo(defaultValue = "false")
     var isFinished: Boolean = false,
+    @ColumnInfo(defaultValue = "null")
+    var password: String? = null,
+    @ColumnInfo(defaultValue = "0")
+    var hideDescription: Boolean = false,
     @Embedded
     var term: Term? = null
 ) : Serializable {
@@ -64,6 +68,8 @@ data class ToDo(
                     viewModel.isOnTop.value!!,
                     viewModel.isNotification.value!!,
                     viewModel.isFinished.value!!,
+                    viewModel.password.value!!,
+                    viewModel.hideDescription.value!!,
                     if (viewModel.hasTerm.value == true) Term(viewModel.beginDate.value, viewModel.endDate.value) else null
                 )
             }

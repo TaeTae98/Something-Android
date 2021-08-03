@@ -9,9 +9,5 @@ import javax.inject.Inject
 class PasswordViewModel @Inject constructor(
     stateHandle: SavedStateHandle
 ) : ViewModel() {
-    companion object {
-        private const val PASSWORD = "PASSWORD"
-    }
-
-    val password = stateHandle.getLiveData(PASSWORD, "")
+    val password = stateHandle.getLiveData("PASSWORD", "")
 }
