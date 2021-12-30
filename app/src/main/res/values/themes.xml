@@ -1,31 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Something" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Something" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/main</item>
-        <item name="colorPrimaryVariant">@color/main</item>
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/deep_main</item>
-        <item name="colorSecondaryVariant">@color/deep_main</item>
-        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="toolbarStyle">@style/Theme.Something.Toolbar</item>
-        <item name="materialButtonStyle">@style/Theme.Something.Button</item>
-        <item name="materialCardViewStyle">@style/Theme.Something.CardView</item>
-
-        <item name="colorControlNormal">?attr/colorOnPrimary</item>
-
-        <item name="colorElement">@color/white</item>
-        <item name="colorElementVariant">?attr/colorPrimary</item>
-        <item name="colorOnElement">@color/nickel</item>
-        <item name="colorOnElementVariant">@color/black</item>
-
-
-        <item name="colorWeek">@color/black</item>
-        <item name="colorSunday">@color/red</item>
-        <item name="colorSaturday">@color/blue</item>
     </style>
+
+    <style name="Theme.Something.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Something.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Something.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
